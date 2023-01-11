@@ -1,3 +1,10 @@
+## **Sync #3 January 10th, 2023**
+continue working
+ideas discussed:
+- comparison between users and GPT answers, and the game is for users to guess which is correct; not super engaging.
+- choose a beta use case
+- propose Reputation in Study Groups. Reputation will be part of a positive cycle with several interaction opportunities; is a useful case.
+
 ## **Sync #2 January 9th, 2023**
 
 ### Main Topics
