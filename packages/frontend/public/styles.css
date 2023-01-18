@@ -1,0 +1,4 @@
+/* @tailwind is a syntax from tailwindcss */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
