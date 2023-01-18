@@ -40,4 +40,14 @@ contract UnirepApp {
             graffiti
         );
     }
+
+    // get attester epoch
+    function attesterCurrentEpoch() public view returns (uint256) {
+        return unirep.attesterCurrentEpoch(uint160(address(this)));
+    }
+
+    // get attester epoch remaining time
+    function attesterEpochRemainingTime() public view returns (uint256) {
+        return unirep.attesterEpochRemainingTime(uint160(address(this)));
+    }
 }

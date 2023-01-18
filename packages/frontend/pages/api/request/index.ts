@@ -4,7 +4,7 @@ import { APP_ADDRESS, PRIVATE_KEY, ETH_PROVIDER_URL } from "../../../../../confi
 import UnirepApp from "@taz-v2/contracts/artifacts/contracts/UnirepApp.sol/UnirepApp.json";
 import { UserState, schema } from "@unirep/core";
 import { defaultProver as prover } from "@unirep/circuits/provers/defaultProver";
-import { ZkIdentity } from "@unirep/utils";
+import { ZkIdentity, Strategy, hash1, stringifyBigInts } from "@unirep/utils";
 import { DB, SQLiteConnector } from "anondb/node";
 
 const contractAddress = APP_ADDRESS;
@@ -37,10 +37,14 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         try {
             const id = new ZkIdentity();
             const userState = await genUserState(id, contract);
+            const epochKeyProof = await userState.genEpochKeyProof({ nonce: 0 });
+            const graffiti = hash1([`0x${Buffer.from("abc".toString()).toString("hex")}`]);
+            const epoch = await contract.attesterCurrentEpoch();
 
-            const { publicSignals, proof } = await userState.genUserSignUpProof();
-            console.log("publicSignals: ", publicSignals);
-            const tx = await contract.userSignUp(publicSignals, proof);
+            // const { publicSignals, proof } = await userState.genUserSignUpProof();
+            // console.log("publicSignals: ", publicSignals);
+
+            const tx = await contract.submitAttestation(epoch, epochKeyProof.epochKey, 10, 1, graffiti);
             await tx.wait();
             const hash = tx.hash;
             res.status(200).json({ hash });

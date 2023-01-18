@@ -1,25 +1,40 @@
-import { ethers } from "hardhat";
+import fs from "fs";
+import path from "path";
+import { deployUnirep } from "@unirep/contracts/deploy/index.js";
+import hardhat from "hardhat";
+const { ethers } = hardhat;
 
-async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 30;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
+// const UnirepApp = require("../abi/UnirepApp.json")
 
-  const lockedAmount = ethers.utils.parseEther("1");
+async function deploy() {
+    const [signer] = await ethers.getSigners();
+    const unirep = await deployUnirep(signer);
+    const epochLength = 100;
 
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+    const App = await ethers.getContractFactory("UnirepApp");
+    const app = await App.deploy(unirep.address, epochLength);
 
-  await lock.deployed();
+    await app.deployed();
 
-  console.log(
-    `Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
-  );
+    console.log(`Unirep app with epoch length ${epochLength} deployed to ${app.address}`);
+
+    const config = `module.exports = {
+      UNIREP_ADDRESS: '${unirep.address}',
+      APP_ADDRESS: '${app.address}',
+      ETH_PROVIDER_URL: '${hardhat.network.config.url ?? ""}',
+      SERVER: 'http://127.0.0.1:3000',
+      ${
+          Array.isArray(hardhat.network.config.accounts)
+              ? `PRIVATE_KEY: '${hardhat.network.config.accounts[0]}',`
+              : `/**
+        This contract was deployed using a mnemonic. The PRIVATE_KEY variable needs to be set manually
+      **/`
+      }
+    }
+    `;
+    const configPath = path.join(__dirname, "../../../config.js");
+    await fs.promises.writeFile(configPath, config);
+    console.log(`Config written to ${configPath}`);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+deploy();
