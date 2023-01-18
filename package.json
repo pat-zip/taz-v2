@@ -1,10 +1,14 @@
 {
-  "name": "taz-v2",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ]
+    "name": "taz-v2",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "contracts": "yarn workspace @taz-v2/contracts run",
+        "frontend": "yarn workspace @taz-v2/frontend run"
+    }
 }

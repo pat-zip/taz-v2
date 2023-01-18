@@ -1,3 +1,8 @@
 module.exports = {
-  ETH_PROVIDER_URL: "http://localhost:8545",
-};
+      UNIREP_ADDRESS: '0x4826533B4897376654Bb4d4AD88B7faFD0C98528',
+      APP_ADDRESS: '0x99bbA657f2BbC93c02D617f8bA121cB8Fc104Acf',
+      ETH_PROVIDER_URL: 'http://127.0.0.1:8545',
+      SERVER: 'http://127.0.0.1:3000',
+      PRIVATE_KEY: '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80',
+    }
+    
