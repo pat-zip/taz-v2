@@ -1,0 +1,9 @@
+Private inputs:
+
+identityNullifier: the 32-byte identity secret used as a nullifier.
+Public inputs:
+
+externalNullifier: the 32-byte external nullifier.
+Public outputs:
+
+nullifierHash: the hash of the identity nullifier and the external nullifier; used to prevent double-signaling.

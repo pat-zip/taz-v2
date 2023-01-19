@@ -1,0 +1,2 @@
+{"prompt": " In the context of “Semaphore” private voting use case, what are the roles\n\n###\n\n", "completion": "There are three roles: - Developer or community admin. - Community member (dApp user) - Relay\n###"}
+{"prompt": " In the context of Semaphore private voting use case, what is community member\n\n###\n\n", "completion": "Community members connect their wallets to the “dApp” to take the following actions: Verify ownership of the community token. Generate an anonymous ID . Cast a vote.###"}
