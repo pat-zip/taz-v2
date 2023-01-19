@@ -1,0 +1,19 @@
+List of GPT-3 commom commands:
+
+validates if the file is in the correct format
+openai tools fine_tunes.prepare_data -f <LOCAL_FILE>
+
+create a fine-tuned model
+openai api fine_tunes.create -t <TRAIN_FILE_ID_OR_PATH> -m <BASE_MODEL>
+
+create a fine-tuned model and gives it a suffix name
+openai api fine_tunes.create -t <TRAIN_FILE_ID_OR_PATH> -m <BASE_MODEL> --suffix "suffix-name"
+
+resumes the fine-tuning stream if it stops for some reason
+openai api fine_tunes.follow -i <YOUR_FINE_TUNE_JOB_ID>
+
+List all created fine-tunes
+openai api fine_tunes.list
+
+set API Key environment
+export OPENAI_API_KEY="<OPENAI_API_KEY>"
