@@ -1,0 +1,199 @@
+[
+    {
+        "id": 1,
+        "title": "The Beginning of an Adventure",
+        "description": "You wake up in a small village, unsure of how you got there or what your purpose is. As you look around, you notice that the village is in a state of disarray. People are running around frantically and the town guard is nowhere to be found. Suddenly, an old man approaches you and explains that the village is under attack by a group of bandits. He begs for your help to defend the village and bring peace back to the community.",
+        "question": "What will you do?",
+        "reward":" +5 gold and +2 XP",
+        "image": "image1.png",
+        "isChallenge": false,
+        "choices": [
+            {
+                "text": "Help defend the village",
+                "nextIndex": 2
+            },
+            {
+                "text": "Ignore the old man and leave the village",
+                "nextIndex": 3
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Defending the Village",
+        "description": "You grab a sword and shield from the village armory and join the town guard in the defense. The bandits are fierce and well-trained, but with your help, the village is able to push them back and protect the town. The villagers thank you for your bravery and offer you a place to stay for the night.",
+        "question": "What will you do?",
+        "reward":" +10 gold and +5 XP",
+        "image": "image2.png",
+        "isChallenge": false,
+        "choices": [
+            {
+                "text": "Accept their offer and stay the night",
+                "nextIndex": 4
+            },
+            {
+                "text": "Decline and continue on your journey",
+                "nextIndex": 5
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Leaving the Village",
+        "description": "You choose to leave the village and continue on your journey. As you walk away, you can't shake the feeling of guilt for not helping the villagers. The old man's words echo in your mind, reminding you that your actions have consequences.",
+        "question": "What will you do?",
+        "reward":" None",
+        "image": "image3.png",
+        "isChallenge": false,
+"choices": [
+{
+"text": "Turn back and help the villagers",
+"nextIndex": 4
+},
+{
+"text": "Press on and continue your journey",
+"nextIndex": 5
+},
+{
+"text": "Take a detour and search for a way to help the villagers",
+"nextIndex": 6
+}
+]
+},
+{
+"id": 4,
+"title": "Helping the Villagers",
+"description": "You decide to turn back and help the villagers. You spend the next few days working alongside them, rebuilding homes and helping with the crops. The villagers are grateful for your help, and you feel a sense of satisfaction knowing you've made a difference.",
+"question": "What will you do now?",
+"reward":" +10 gold and +5 XP",
+"image": "image4.png",
+"isChallenge": false,
+"choices": [
+{
+"text": "Leave the village and continue on your journey",
+"nextIndex": 7
+},
+{
+"text": "Stay and help the village further",
+"nextIndex": 8
+}
+]
+},
+{
+"id": 5,
+"title": "Encountering Bandits",
+"description": "As you continue on your journey, you come across a group of bandits on the road. They demand that you hand over all of your gold and valuables.",
+"question": "What will you do?",
+"reward":" None",
+"image": "image5.png",
+"isChallenge": true,
+"choices": [
+{
+"text": "Fight the bandits",
+"nextIndex": 9
+},
+{
+"text": "Try to negotiate with the bandits",
+"nextIndex": 10
+},
+{
+"text": "Hand over your gold and valuables",
+"nextIndex": 11
+}
+]
+},
+{
+"id": 6,
+"title": "Finding a Solution",
+"description": "You decide to take a detour and search for a way to help the villagers. After some searching, you come across a ",
+"question": "What will you do?",
+"reward":" +10 gold, +2 XP",
+"image": "image6.png",
+"isChallenge": false,
+"choices": [
+{
+"text": "Fish the stream",
+"nextIndex": 7
+},
+{
+"text": "Look for other solutions",
+"nextIndex": 8
+},
+{
+"text": "Return to the village",
+"nextIndex": 9
+}
+]
+},
+{"id": 7,
+"title": "Fishing the Stream",
+"description": "You spend the next few hours fishing the stream. You catch enough fish to feed the entire village for a week. You feel proud of yourself for finding a solution to the villagers' problem.",
+"question": "What will you do?",
+"reward":" +15 gold, +5 XP",
+"image": "image7.png",
+"isChallenge": false,
+"choices": [
+{
+"text": "Take the fish back to the village",
+"nextIndex": 10
+},
+{
+"text": "Sell the fish to the nearest town",
+"nextIndex": 11
+}
+]
+},
+{"id": 8,
+"title": "Searching for Other Solutions",
+"description": "You spend the next few hours searching for other solutions to help the village. You come across a nearby herb garden that could be used for medicinal purposes. You also notice that there is a nearby mine that could provide resources for the village.",
+"question": "What will you do?",
+"reward":" +10 gold, +2 XP",
+"image": "image8.png",
+"isChallenge": false,
+"choices": [
+{
+"text": "Collect herbs from the garden",
+"nextIndex": 12
+},
+{
+"text": "Investigate the mine",
+"nextIndex": 13
+}]
+},
+{
+"id": 12,
+"title": "Herbal Remedy",
+"description": "You gather a variety of herbs from the nearby garden and bring them back to the village. The villagers are hesitant at first, but with your encouragement they try the remedy. To your amazement, the villagers begin to recover. The old man thanks you for your help and offers to give you a valuable treasure as a reward.",
+"question": "What will you do?",
+"reward":" +25 gold and +10 XP",
+"image": "image12.png",
+"isChallenge": false,
+"choices": [
+{
+"text": "Accept the treasure",
+"nextIndex": 14
+},
+{
+"text": "Decline the treasure",
+"nextIndex": 15
+}]
+},
+{
+"id": 13,
+"title": "Uncovering the Truth",
+"description": "Upon investigating the mine, you discover that the source of the villagers' illness is a toxic gas leak. You quickly work to seal the leak and inform the villagers. They are grateful for your help and offer to reward you for your efforts.",
+"question": "What will you do?",
+"reward":" +30 gold and +15 XP",
+"image": "image13.png",
+"isChallenge": false,
+"choices": [
+{
+"text": "Accept the reward",
+"nextIndex": 16
+},
+{
+"text": "Decline the reward",
+"nextIndex": 17
+}]
+}
+]

@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "title": "Welcome to the game",
+        "description": "This is the first step of your adventure.",
+        "question": "What would you like to do?",
+        "reward":" +5 gold",
+        "image": "image1.png",
+        "isChallenge": false,
+        "choices": [
+            {
+                "text": "Continue",
+                "nextIndex": 2
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Step 2",
+        "description": "You are now at step 2",
+        "question": "What would you like to do?",
+        "reward":" +5 gold",
+        "image": "image2.png",
+        "isChallenge": false,
+        "choices": [
+            {
+                "text": "Combat",
+                "nextIndex": 0
+            },
+            {
+                "text": "Puzzle",
+                "nextIndex": 1
+            },
+            {
+                "text": "Luck",
+                "nextIndex": 2
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Challenge 1",
+        "description": "You encountered a challenge",
+        "question": "What would you like to do?",
+        "reward":" +10 gold and +2 XP",
+        "image": "image5.png",
+        "isChallenge": true,
+        "choices": [
+            {
+                "text": "Combat",
+                "nextIndex": 6
+            },
+            {
+                "text": "Puzzle",
+                "nextIndex": 7
+            },
+            {
+                "text": "Luck",
+                "nextIndex": 8
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Challenge 2",
+        "description": "You encountered another challenge",
+        "question": "What would you like to do?",
+        "reward":" +15 gold and +5 XP",
+        "image": "image6.png",
+        "isChallenge": true,
+        "choices": [
+            {
+                "text": "Combat",
+                "nextIndex": 9
+            },
+            {
+                "text": "Puzzle",
+                "nextIndex": 10
+            },
+            {
+                "text": "Luck",
+                "nextIndex": 11
+            }
+        ]
+    }
+]
