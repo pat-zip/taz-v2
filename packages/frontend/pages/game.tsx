@@ -1,5 +1,5 @@
-import Chapters from "../components/chapters";
+import Nodes from "../components/Nodes";
 
 export default function Game() {
-  return <Chapters />;
+  return <Nodes />;
 }

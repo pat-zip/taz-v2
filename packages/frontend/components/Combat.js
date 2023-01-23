@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function Combat({ selectedMonster, setSelectedMonster }) {
   const [playerHealth, setPlayerHealth] = useState(100);
@@ -56,30 +56,48 @@ function Combat({ selectedMonster, setSelectedMonster }) {
     <div>
       {selectedMonster && (
         <>
-          <p className="text-base text-red-600 text-center">A {selectedMonster.name} appeared!</p>
-          <p className="text-base text-red-600 text-center">{selectedMonster.name}'s health: {monsterHealth}</p>
-          <p className="text-base text-red-600 text-center">Your health: {playerHealth}</p>
-          <p className="text-base text-red-600 text-center">Your damage: {playerDamage}</p>
-          <p className="text-base text-red-600 text-center">Your special damage: {playerSpecialDamage}</p>
-<p className="text-base text-red-600 text-center">Your defense: {playerDefense}</p>
-<div className="mt-4 flex justify-center">
-<button className="bg-red-500 text-white p-2 rounded-lg mr-2 mt-4 hover:bg-red-600" onClick={handleAttack}>
-Attack
-</button>
-<button
-           className="bg-red-500 text-white p-2 rounded-lg mr-2 mt-4 hover:bg-red-600"
-           onClick={handleSpecialAttack}
-         >
-Special
-</button>
-<button className="bg-red-500 text-white p-2 rounded-lg mr-2 mt-4 hover:bg-red-600" onClick={handleDefend}>
-Defend
-</button>
-</div>
-</>
-)}
-</div>
-);
+          <p className="text-base text-red-600 text-center">
+            A {selectedMonster.name} appeared!
+          </p>
+          <p className="text-base text-red-600 text-center">
+            {selectedMonster.name}'s health: {monsterHealth}
+          </p>
+          <p className="text-base text-red-600 text-center">
+            Your health: {playerHealth}
+          </p>
+          <p className="text-base text-red-600 text-center">
+            Your damage: {playerDamage}
+          </p>
+          <p className="text-base text-red-600 text-center">
+            Your special damage: {playerSpecialDamage}
+          </p>
+          <p className="text-base text-red-600 text-center">
+            Your defense: {playerDefense}
+          </p>
+          <div className="mt-4 flex justify-center">
+            <button
+              className="bg-red-500 text-white p-2 rounded-lg mr-2 mt-4 hover:bg-red-600"
+              onClick={handleAttack}
+            >
+              Attack
+            </button>
+            <button
+              className="bg-red-500 text-white p-2 rounded-lg mr-2 mt-4 hover:bg-red-600"
+              onClick={handleSpecialAttack}
+            >
+              Special
+            </button>
+            <button
+              className="bg-red-500 text-white p-2 rounded-lg mr-2 mt-4 hover:bg-red-600"
+              onClick={handleDefend}
+            >
+              Defend
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
 
 export default Combat;
