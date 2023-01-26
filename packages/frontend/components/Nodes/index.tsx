@@ -54,7 +54,7 @@ const Nodes = () => {
     }
   }
 
-  return <div>{nodeData ? renderNode() : "loading"}</div>;
+  return <div className="flex justify-center">{nodeData ? renderNode() : "loading"}</div>;
 };
 
 export default Nodes;
