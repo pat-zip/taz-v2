@@ -10,6 +10,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.4.1",
     "@unirep/circuits": "2.0.0-alpha-3",
     "@unirep/core": "2.0.0-alpha-3",
     "anondb": "^0.0.17",
