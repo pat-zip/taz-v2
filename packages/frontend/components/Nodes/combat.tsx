@@ -17,6 +17,7 @@ function Combat({ selectedMonster, clearChallenge }) {
     if (selectedMonster) {
       setMonsterHealth(selectedMonster.health);
     }
+    console.log(selectedMonster);
   }, [selectedMonster]);
 
   const handleAttack = () => {
@@ -74,53 +75,57 @@ function Combat({ selectedMonster, clearChallenge }) {
 
   useEffect(() => {
     if (monsterHealth <= 0) {
-      clearChallenge()
+      clearChallenge();
     } else if (playerHealth <= 0) {
-      alert("GAME OVER!")
+      alert("GAME OVER!");
     }
   }, [monsterHealth, playerHealth]);
 
   return (
-    <div>
+    <div className="p-6 border rounded-lg w-[650px]">
       {selectedMonster && selectedMonster.health && (
         <>
-          <p className="text-base text-red-600 text-center">
+          <h1 className="text-3xl text-center mb-5 font-bold">
             A {selectedMonster.name} appeared!
-          </p>
-          <p className="text-base text-red-600 text-center">
-            {selectedMonster.name}'s health: {monsterHealth}
-          </p>
-          <p className="text-base text-red-600 text-center">
-            Your health: {playerHealth}
-          </p>
-          <p className="text-base text-red-600 text-center">
-            Your Last round damage: {playerDamage}
-          </p>
-          <p className="text-base text-red-600 text-center">
-            Your Last round special damage: {playerSpecialDamage}
-          </p>
-          <p className="text-base text-red-600 text-center">
-            Your Last round defense: {playerDefense}
-          </p>
-          <div className="mt-4 flex justify-center">
-            <button
-              className="bg-red-500 text-white p-2 rounded-lg mr-2 mt-4 hover:bg-red-600"
-              onClick={handleAttack}
-            >
-              Attack
-            </button>
-            <button
-              className="bg-red-500 text-white p-2 rounded-lg mr-2 mt-4 hover:bg-red-600"
-              onClick={handleSpecialAttack}
-            >
-              Special
-            </button>
-            <button
-              className="bg-red-500 text-white p-2 rounded-lg mr-2 mt-4 hover:bg-red-600"
-              onClick={handleDefend}
-            >
-              Defend
-            </button>
+          </h1>
+          <hr className="my-1" />
+          <div className="flex flex-col items-center p-5">
+            <img src={selectedMonster.image} />
+          </div>
+          <div className="bg-gray-100 rounded-lg p-4 px-6">
+            <div className="flex flex-row justify-around font-bold mb-2">
+              <p>Your health: {playerHealth}</p>
+              <p>
+                {selectedMonster.name}'s health: {monsterHealth}
+              </p>
+            </div>
+            <div className="flex flex-row justify-between mt-4 items-center">
+              <ul>
+                <li>Your Last round damage: {playerDamage}</li>
+                <li>Your Last round special damage: {playerSpecialDamage}</li>
+                <li>Your Last round defense: {playerDefense}</li>
+              </ul>
+              <div className="flex flex-row items-center justify-center">
+                <button
+                  className="bg-red-500 text-white text-xl p-2 rounded-lg mx-1 hover:bg-red-600"
+                  onClick={handleAttack}
+                >
+                  Attack
+                </button>
+                <button
+                  className="bg-blue-500 text-white text-xl p-2 rounded-lg mx-1 hover:bg-blue-600"
+                  onClick={handleSpecialAttack}
+                >
+                  Special
+                </button>
+                <button
+                  className="bg-green-500 text-white text-xl p-2 rounded-lg mx-1 hover:bg-green-600"
+                  onClick={handleDefend}
+                >
+                  Defend
+                </button>
+              </div>
+            </div>
           </div>
         </>
       )}
