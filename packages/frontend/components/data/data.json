@@ -11,6 +11,10 @@
             {
                 "text": "Continue",
                 "nextIndex": 2
+            },
+            {
+                "text": "Dont Continue",
+                "nextIndex": 2
             }
         ]
     },
@@ -48,7 +52,7 @@
         "choices": [
             {
                 "text": "Combat",
-                "nextIndex": 6
+                "nextIndex": 0
             },
             {
                 "text": "Puzzle",
@@ -62,23 +66,23 @@
     },
     {
         "id": 6,
-        "title": "Challenge 2",
+        "title": "Congratulations, you defeated your first Monster!",
         "description": "You encountered another challenge",
         "question": "What would you like to do?",
         "reward":" +15 gold and +5 XP",
         "image": "image6.png",
-        "isChallenge": true,
+        "isChallenge": false,
         "choices": [
             {
-                "text": "Combat",
+                "text": "1",
                 "nextIndex": 9
             },
             {
-                "text": "Puzzle",
+                "text": "2",
                 "nextIndex": 10
             },
             {
-                "text": "Luck",
+                "text": "3",
                 "nextIndex": 11
             }
         ]

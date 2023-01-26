@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import data from './data/data2.json';
+import data from './data/data.json';
 import monsters from './data/monsters.json';
 import puzzles from './data/puzzles.json';
 import Combat from './Combat';
 import Puzzle from './Puzzle';
 import Luck from './Luck';
 
-function GameComponent() {
+function Game() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedChoice, setSelectedChoice] = useState();
+  const [selectedChoice, setSelectedChoice] = useState("");
+  const [isChoice, setIsChoice] = useState(false);
+  const [isChallengeComplete, setIsChallengeComplete] = useState(false);
   const [selectedMonster, setSelectedMonster] = useState("");
   const [selectedPuzzle, setSelectedPuzzle] = useState("");
   const [userAnswer, setUserAnswer] = useState();
@@ -24,6 +26,7 @@ function GameComponent() {
 
   const handleChoice = choiceIndex => {
     setSelectedChoice(choiceIndex);
+    setIsChoice(true);
     console.log("Choice Index", choiceIndex)
   };
 
@@ -47,6 +50,7 @@ function GameComponent() {
       const nextIndex = data[currentIndex].choices[selectedChoice].nextIndex;
       setCurrentIndex(nextIndex);
       setSelectedChoice(null);
+      setIsChoice(false);
       console.log("Next Index", nextIndex)
 
     }
@@ -101,25 +105,18 @@ function GameComponent() {
                 {choice.text}
               </button>
             ))}
-            {selectedMonster !== "" ? (
-            <button
-              className="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-600"
-              onClick={handleCombat}
-            >
-              Battle
-            </button>
-          ) : (
-            <button
-              className="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-600"
-              onClick={handleNext}
-            >
-              Next
-            </button>
-          )}
+            {selectedMonster !== "" &&(
+              <button
+                className="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-600"
+                onClick={handleCombat}
+              >
+                Battle
+              </button>
+            )} 
           </div>
         )}
         {!data[currentIndex].isChallenge && (
-          <div>
+          <div className='flex justify-center'>
             {data[currentIndex].choices.map((choice, index) => (
               <button
                 key={index}
@@ -131,19 +128,23 @@ function GameComponent() {
                 {choice.text}
               </button>
             ))}
-            <button
-              className="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-600"
-              onClick={handleNext}
-            >
-              Next
-            </button>
           </div>
         )}
+        { isChoice === true && (
+            <div className="flex justify-center">
+              <button
+                className="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-600"
+                onClick={handleNext}
+              >
+                Next
+              </button>
+            </div>
+            )}
       </div>
     </div>
   );
 }
 
-export default GameComponent;
+export default Game;
 
 
