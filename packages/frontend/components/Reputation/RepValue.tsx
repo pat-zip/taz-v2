@@ -19,15 +19,16 @@ const RepValue: React.FC<Props> = ({ reputation, stats }) => {
       if (i % 2 === 0 && i !== 0) {
         currentStat++;
       }
-      colorReputation += `<span style="color: ${stats[currentStat].color}">${reputation[i]}</span>`;
+      colorReputation += `<span class="${stats[currentStat].color}">${reputation[i]}</span>`;
     }
     return colorReputation;
   };
 
+  // TODO: Find a better way of doing this that doesnt' involve dangerouslySetInnerHTML
   return (
     <div
-      className="bg-gray-100 rounded-lg p-4 text-4xl"
-      dangerouslySetInnerHTML={{ __html: "0x" + colorReputation(reputation) }}
+      className="text-4xl"
+      dangerouslySetInnerHTML={{ __html: "<span style='color: #000000;'>0x</span>" + colorReputation(reputation) }}
     />
   );
 };
