@@ -2,3 +2,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@layer base {
+  body {
+    @apply bg-neutral-100;
+  }
+}
+
+.rainbow-0 {
+  color: #6a1b9a;
+}
+.rainbow-1 {
+  color: #4527a0;
+}
+.rainbow-2 {
+  color: #283593;
+}
+.rainbow-3 {
+  color: #1565c0;
+}
+.rainbow-4 {
+  color: #0277bd;
+}
+.rainbow-5 {
+  color: #00838f;
+}
+.rainbow-6 {
+  color: #00695c;
+}
+.rainbow-7 {
+  color: #2e7d32;
+}
+.rainbow-8 {
+  color: #558b2f;
+}
+.rainbow-9 {
+  color: #9e9d24;
+}
+.rainbow-10 {
+  color: #f9a825;
+}
