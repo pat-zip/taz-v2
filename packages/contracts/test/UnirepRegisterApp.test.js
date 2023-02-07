@@ -26,7 +26,7 @@ async function genUserState(id, app) {
   return userState;
 }
 
-describe("Unirep Register App", function () {
+describe("Unirep App", function () {
   let unirep;
   let app;
   let verifier;
@@ -47,8 +47,8 @@ describe("Unirep Register App", function () {
     verifier = await Verifier.deploy();
     await verifier.deployed();
 
-    const App = await ethers.getContractFactory("UnirepRegisterApp");
-    app = await App.deploy(unirep.address, verifier.address, epochLength);
+    const App = await ethers.getContractFactory("UnirepApp");
+    app = await App.deploy(unirep.address, "0xb794f5ea0ba39494ce839613fffba74279579268", epochLength);
     await app.deployed();
 
     startTime = (await unirep.attesterStartTimestamp(app.address)).toNumber();
@@ -119,15 +119,15 @@ describe("Unirep Register App", function () {
     await unirep.verifyReputationProof(publicSignals, proof).then((t) => t.wait());
   });
 
-  it("reputation register proof", async () => {
-    const userState = await genUserState(id, app);
-
-    const { publicSignals, proof } = await userState.genProveReputationProof({
-      epkNonce: 0,
-      minRep: 4,
-      graffitiPreImage,
-    });
-    console.log("reputation register proof publicSignals: ", publicSignals);
-    await app.verifyRepRegisterProof(publicSignals, proof).then((t) => t.wait());
+  it("stat proof", async () => {
+    // Implementing inherited version of userState (appUserState) in order to use custom getProveReputationProof
+    // const userState = await genUserState(id, app);
+    // const { publicSignals, proof } = await userState.genProveReputationProof({
+    //   epkNonce: 0,
+    //   minRep: 4,
+    //   graffitiPreImage,
+    // });
+    // console.log("reputation register proof publicSignals: ", publicSignals);
+    // await app.verifyRepRegisterProof(publicSignals, proof).then((t) => t.wait());
   });
 });

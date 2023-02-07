@@ -6,9 +6,12 @@ import "./ProveRepRegisterVerifier.sol";
 // Uncomment this line to use console.log
 // import "hardhat/console.sol";
 
-contract UnirepRegisterApp {
+contract UnirepApp {
     Unirep public unirep;
     ProveRepRegisterVerifier public proveRepRegisterVerifier;
+    error AttesterInvalid();
+    error InvalidEpochKey();
+    error InvalidProof();
 
     constructor(Unirep _unirep, ProveRepRegisterVerifier _proveRepRegisterVerifier, uint256 _epochLength) {
         // set unirep address
@@ -51,6 +54,7 @@ contract UnirepRegisterApp {
         uint256[] memory publicSignals,
         uint256[8] memory proof
     ) public {
+        
         // input[0] = epoch | public[0]
         // input[1] = nonce | public[1]
         // input[2] = epoch key (output) | public[2]
@@ -61,21 +65,24 @@ contract UnirepRegisterApp {
         // input[7] = posRep
         // input[8] = negRep
         // input[9] = graffiti
+
         bool valid = proveRepRegisterVerifier.verifyProof(publicSignals, proof);
-        if (!valid) revert unirep.InvalidProof();
-        if (publicSignals[0] >= unirep.maxEpochKey) revert unirep.InvalidEpochKey(); 
-        if (publicSignals[3] >= type(uint160).max) revert unirep.AttesterInvalid();
+        if (!valid) revert InvalidProof();
+        if (publicSignals[0] >= unirep.maxEpochKey()) revert InvalidEpochKey(); 
+        if (publicSignals[3] >= type(uint160).max) revert AttesterInvalid();
         unirep.updateEpochIfNeeded(uint160(publicSignals[3]));
 
-        AttesterData storage attester = attesters[uint160(publicSignals[3])];
+        // We can't do the part below yet because the attester data store isn't public
 
-        // epoch check
-        if (publicSignals[2] > attester.currentEpoch)
-            revert unirep.InvalidEpoch(publicSignals[2]);
+        // AttesterData storage attester = attesters[uint160(publicSignals[3])];
 
-        // state tree root check
-        if (!attester.stateTreeRoots[publicSignals[2]][publicSignals[1]])
-            revert unirep.InvalidStateTreeRoot(publicSignals[1]);
+        // // epoch check
+        // if (publicSignals[2] > attester.currentEpoch)
+        //     revert unirep.InvalidEpoch(publicSignals[2]);
+
+        // // state tree root check
+        // if (!attester.stateTreeRoots[publicSignals[2]][publicSignals[1]])
+        //     revert unirep.InvalidStateTreeRoot(publicSignals[1]);
     }
 
     // get attester epoch
