@@ -1,1 +1,14 @@
-{ "input_signal": 1111111111, "min_value": 2, "index": 1, "byte_length": 1 }
+{
+  "identity_nullifier": 5478424919104908173604918406912535941073478552055598977369074322269822,
+  "attester_id": 78790969763375549363955457421182855930496929154,
+  "epoch": 0,
+  "pos_rep": 5,
+  "neg_rep": 0,
+  "graffiti": 0,
+  "timestamp": 0,
+  "min_register_value": 1,
+  "register_index": 7,
+  "byte_length": 1,
+  "state_tree_indexes": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "state_tree_elements": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
