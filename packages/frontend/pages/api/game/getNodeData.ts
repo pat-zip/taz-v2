@@ -14,8 +14,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       )
       .eq("id", node);
 
-    console.log(response.data[0].monsters)
-
     res.status(200).json(response.data[0]);
   } catch (err: any) {
     res.status(500).json({ statusCode: 500, message: err.message });

@@ -8,7 +8,11 @@ type Props = {
 
 const CurrentNode: FC<Props> = ({ data, setCurrentNode }) => {
   function next(next: number) {
-    setCurrentNode(next);
+    if (next) {
+      setCurrentNode(next);
+    } else {
+      alert("End of the story!");
+    }
   }
 
   return (
