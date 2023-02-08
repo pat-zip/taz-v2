@@ -30,7 +30,10 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
             Unirep
           </Link>
           <Link href="/reputation" className="text-gray-100 hover:text-blue-700 mx-4">
-            Reputation
+            Stats
+          </Link>
+          <Link href="/prove-stat" className="text-gray-100 hover:text-blue-700 mx-4">
+            Prove Stat
           </Link>
           {/* <a href="/api/users" className="text-gray-100 hover:text-blue-700 mx-4">
                         Users API
