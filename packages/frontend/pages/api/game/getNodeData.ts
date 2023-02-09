@@ -10,7 +10,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const response = await supabase
       .from("nodes")
       .select(
-        `title, description, question, image, hasChallenge, isCleared, challengeType, edges (id, action, next), monsters (name, health, damage, image)`
+        `title, description, question, image, hasChallenge, isCleared, challengeType, stat, modifier, edges (id, action, next), monsters (name, health, damage, image)`
       )
       .eq("id", node);
 

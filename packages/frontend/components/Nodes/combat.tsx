@@ -14,6 +14,7 @@ function Combat({ selectedMonster, clearChallenge }) {
   const [playerDefense, setPlayerDefense] = useState(0);
 
   useEffect(() => {
+    console.log("Combat");
     if (selectedMonster) {
       setMonsterHealth(selectedMonster.health);
     }
@@ -90,7 +91,7 @@ function Combat({ selectedMonster, clearChallenge }) {
           </h1>
           <hr className="my-1" />
           <div className="flex flex-col items-center p-5">
-            <img src={selectedMonster.image} />
+            <img className="w-[300px]" src={selectedMonster.image} />
           </div>
           <div className="bg-gray-100 rounded-lg p-4 px-6">
             <div className="flex flex-row justify-around font-bold mb-2">

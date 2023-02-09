@@ -3,12 +3,17 @@ import Node from "../../types/Node";
 
 type Props = {
   data: Node;
-  setCurrentNode: Function;
+  updateGameData: Function;
+  setGameOver: Function;
 };
 
-const CurrentNode: FC<Props> = ({ data, setCurrentNode }) => {
+const CurrentNode: FC<Props> = ({ data, updateGameData, setGameOver }) => {
   function next(next: number) {
-    setCurrentNode(next);
+    if (next) {
+      updateGameData(next);
+    } else {
+      setGameOver(true);
+    }
   }
 
   return (
