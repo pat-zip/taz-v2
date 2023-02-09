@@ -6,43 +6,44 @@ import End from "./end";
 
 const Nodes = () => {
   const [gameOver, setGameOver] = useState(false);
-  const [currentNode, setCurrentNode] = useState(1);
+  const [currentNode, setCurrentNode] = useState(null);
   const [nodeData, setNodeData] = useState(null);
   const [amountCleared, setAmountCleared] = useState(0);
   const [stats, setStats] = useState(null);
 
-  const updateStats = () => {
+  const updateGameData = (next) => {
     const stat = nodeData.stat;
     const value = stats[stat] + nodeData.modifier;
-    console.log("stat: ", stat, "modifier: ", nodeData.modifier);
-    const newStats = { ...stats, [stat]: value };
-    localStorage.setItem("stats", JSON.stringify(newStats));
+    const updatedStats = { ...stats, [stat]: value };
+    localStorage.setItem("stats", JSON.stringify(updatedStats));
+    localStorage.setItem("currentNode", next.toString());
+    setCurrentNode(next);
   };
 
-  function getCurrentNode() {
-    const node = localStorage.getItem("node");
-    setCurrentNode(parseInt(node));
-  }
-
-  const initStats = () => {
+  const initGame = () => {
+    console.log("Initializing new game");
     const initialStats = { Strength: 0, Dexterity: 0, Experience: 0, Gold: 0 };
+    const initialNode = 1;
     localStorage.setItem("stats", JSON.stringify(initialStats));
+    localStorage.setItem("currentNode", initialNode.toString());
+    setCurrentNode(1);
   };
 
-  async function getNodeData() {
+  async function getNodeData(node) {
     await fetch("/api/game/getNodeData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ node: currentNode }),
+      body: JSON.stringify({ node: node }),
     })
       .then((response) => response.json())
-      .then((data) => setNodeData(data));
+      .then((data) => {
+        setNodeData(data);
+      });
   }
 
   async function clearChallenge() {
-    console.log("clear challenge called");
     await fetch("/api/game/clearChallenge", {
       method: "POST",
       headers: {
@@ -53,18 +54,23 @@ const Nodes = () => {
     setAmountCleared(amountCleared + 1);
   }
 
-  function getStats() {
-    if (currentNode == 1) {
-      initStats();
+  function getGameData() {
+    const savedStats = localStorage.getItem("stats");
+    const savedNode = localStorage.getItem("currentNode");
+
+    if (!savedStats || !savedNode) {
+      initGame();
+    } else {
+      getNodeData(savedNode);
+      setStats(JSON.parse(savedStats));
+      setCurrentNode(parseInt(savedNode));
+      console.log("current Node: ", currentNode);
+      console.log("current Stats: ", stats);
     }
-    const saved = localStorage.getItem("stats");
-    setStats(JSON.parse(saved));
-    console.log(stats);
   }
 
   useEffect(() => {
-    getStats();
-    getNodeData();
+    getGameData();
   }, [currentNode, amountCleared]);
 
   function renderNode() {
@@ -89,8 +95,7 @@ const Nodes = () => {
         return (
           <CurrentNode
             data={nodeData}
-            setCurrentNode={setCurrentNode}
-            updateStats={updateStats}
+            updateGameData={updateGameData}
             setGameOver={setGameOver}
           />
         );
@@ -111,7 +116,7 @@ const Nodes = () => {
         ""
       )}
       <div className="flex justify-center">
-        {nodeData ? renderNode() : "loading"}
+        {currentNode && nodeData ? renderNode() : "loading"}
       </div>
     </div>
   );
