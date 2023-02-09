@@ -5,15 +5,21 @@ type Props = {
   data: Node;
   setCurrentNode: Function;
   updateStats: Function;
+  setGameOver: Function;
 };
 
-const CurrentNode: FC<Props> = ({ data, setCurrentNode, updateStats }) => {
+const CurrentNode: FC<Props> = ({
+  data,
+  setCurrentNode,
+  updateStats,
+  setGameOver,
+}) => {
   function next(next: number) {
     updateStats();
     if (next) {
       setCurrentNode(next);
     } else {
-      alert("End of the story");
+      setGameOver(true);
     }
   }
 
