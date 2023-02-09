@@ -83,6 +83,12 @@ const Nodes = () => {
   }, [currentNode, amountCleared]);
 
   function renderNode() {
+    console.log(
+      "Challenge? ",
+      nodeData.hasChallenge,
+      "Cleared? ",
+      nodeData.isCleared
+    );
     if (gameOver) {
       return <End />;
     } else {
@@ -117,9 +123,13 @@ const Nodes = () => {
       {stats ? (
         <div className="flex flex-row justify-center p-2">
           <p className="mx-2">Strength: {stats.Strength}</p>
+          <p className="mx-2">Constitution: {stats.Constitution}</p>
           <p className="mx-2">Dexterity: {stats.Dexterity}</p>
+          <p className="mx-2">Perception: {stats.Perception}</p>
+          <p className="mx-2">Charisma: {stats.Charisma}</p>
           <p className="mx-2">Experience: {stats.Experience}</p>
           <p className="mx-2">Gold: {stats.Gold}</p>
+          <p className="mx-2">Items: {stats.Items}</p>
         </div>
       ) : (
         ""
