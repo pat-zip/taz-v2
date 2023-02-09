@@ -17,6 +17,7 @@ module.exports = {
         "rainbow-10": "#F9A825",
         success: "#558B2F",
         error: "#000000",
+        "boxShadow-overlay": "rgba(0, 0, 0, 0.5)",
       },
     },
   },
