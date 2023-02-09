@@ -22,7 +22,16 @@ const Nodes = () => {
 
   const initGame = () => {
     console.log("Initializing new game");
-    const initialStats = { Strength: 0, Dexterity: 0, Experience: 0, Gold: 0 };
+    const initialStats = {
+      Strength: 0,
+      Constitution: 0,
+      Dexterity: 0,
+      Perception: 0,
+      Charisma: 0,
+      Gold: 0,
+      Items: 0,
+      Experience: 0,
+    };
     const initialNode = 1;
     localStorage.setItem("stats", JSON.stringify(initialStats));
     localStorage.setItem("currentNode", initialNode.toString());
