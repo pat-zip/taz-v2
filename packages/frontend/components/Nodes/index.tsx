@@ -47,14 +47,28 @@ const Nodes = () => {
             />
           );
         case "puzzle":
-          return <Puzzle clearChallenge={clearChallenge} selectedPuzzle={1} />;
+          return (
+            <Puzzle
+              clearChallenge={clearChallenge}
+              selectedPuzzle={1}
+            />
+          );
       }
     } else {
-      return <CurrentNode data={nodeData} setCurrentNode={setCurrentNode} />;
+      return (
+        <CurrentNode
+          data={nodeData}
+          setCurrentNode={setCurrentNode}
+        />
+      );
     }
   }
 
-  return <div className="flex justify-center">{nodeData ? renderNode() : "loading"}</div>;
+  return (
+    <div className="flex justify-center bg-black text-white min-h-screen">
+      {nodeData ? renderNode() : "loading"}
+    </div>
+  );
 };
 
 export default Nodes;
