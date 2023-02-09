@@ -4,11 +4,17 @@ import Node from "../../types/Node";
 type Props = {
   data: Node;
   setCurrentNode: Function;
+  updateStats: Function;
 };
 
-const CurrentNode: FC<Props> = ({ data, setCurrentNode }) => {
+const CurrentNode: FC<Props> = ({ data, setCurrentNode, updateStats }) => {
   function next(next: number) {
-    setCurrentNode(next);
+    updateStats();
+    if (next) {
+      setCurrentNode(next);
+    } else {
+      alert("End of the story");
+    }
   }
 
   return (
