@@ -122,9 +122,9 @@ const Nodes = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col bg-black min-h-screen justify-center border-2 border-black">
       {stats ? (
-        <div className="flex flex-row justify-center p-2">
+        <div className="flex flex-row justify-center p-2 text-white border-2 border-white">
           <p className="mx-2">Strength: {stats.Strength}</p>
           <p className="mx-2">Constitution: {stats.Constitution}</p>
           <p className="mx-2">Dexterity: {stats.Dexterity}</p>
@@ -137,7 +137,7 @@ const Nodes = () => {
       ) : (
         ""
       )}
-      <div className="flex justify-center">
+      <div className="flex justify-center border-2 border-black">
         {currentNode && nodeData ? renderNode() : "loading"}
       </div>
     </div>
