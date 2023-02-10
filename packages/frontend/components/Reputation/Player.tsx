@@ -107,6 +107,9 @@ const Player: React.FC<Props> = () => {
     localStorage.setItem("registers", JSON.stringify(registers));
   }, [registers]);
 
+  // calculates the total reputation value
+  // and returns an array with the total positive and negative reputation
+  // the returned values are used to set the state of the posRep and negRep variables on handleStatChange() function
   const calculateReputation = (
     registers: Array<{
       name: string;
@@ -128,36 +131,50 @@ const Player: React.FC<Props> = () => {
     // console.log("negRep: ", negRep, negRep.toString(2)); // (pnegRep >>> 0).toString(2))
     return [posRep, negRep];
   };
+
   const [posRep, setPosRep] = useState(0);
   const [negRep, setNegRep] = useState(0);
   const [isSending, setIsSending] = useState(false);
 
+  // updates the reputation value
+  // it's passed to the Stat component as a prop to be used as a callback function to update the state of the stats
   const handleStatChange = (
     index: number,
     posRep: number,
     negRep: number,
     minValue: number
   ) => {
+
+    //creates a copy of the stats array and updates the values of the selected stat        
     const newStats = [...registers];
     newStats[index].posRep = posRep;
     newStats[index].negRep = negRep;
     newStats[index].minValue = minValue;
     setRegisters(newStats);
 
+    // updates the reputation based on the new stats
     const [posRepCalc, negRepCalc] = calculateReputation(newStats);
     setPosRep(posRepCalc);
     setNegRep(negRepCalc);
   };
 
+  // checks and proof the reputation value
+  // it does that by invoking the prove-rep API endpoint
+  // prove-rep generates the proof and returns it to the function
   const handleProveRep = async (
     indexParam: number,
     minValueParam: number
   ): Promise<string | null> => {
     try {
+      // calculate the input signal by subtracting the negative reputation from the positive reputation.
       const inputSignal: number = posRep - negRep;
+      // set the minimum value to the value passed as a parameter.
       const minValue: number = minValueParam;
+      // set the index to the value passed as a parameter.
       const index: number = indexParam;
       const byteLength: number = 1;
+      
+      // Combine the values into a single object called "input"
       const input = {
         inputSignal,
         minValue: minValueParam,
@@ -165,6 +182,8 @@ const Player: React.FC<Props> = () => {
         byteLength,
       };
       console.log("input", input);
+
+      // Send a POST request to the /api/prove-rep endpoint with the input as the body.
       const res = await fetch("/api/prove-rep", {
         method: "POST",
         headers: {
@@ -172,10 +191,13 @@ const Player: React.FC<Props> = () => {
         },
         body: JSON.stringify(input),
       });
+
+      // parse the response as JSON and extract the "isVerified" and "message" properties
       const { isVerified, message } = await res.json();
       return isVerified + " : " + message;
     } catch (error) {
       console.log(error);
+      // If there's an error, return null
       return null;
     }
   };

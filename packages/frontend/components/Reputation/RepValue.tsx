@@ -14,12 +14,14 @@ interface Props {
   }>;
 }
 
+
 const RepValue: React.FC<Props> = ({ reputation, registers }) => {
+   // converts the reputation value into a string of color-coded digits
+  // each stat from stats array has a pre-defined color
   const colorReputation = (reputationNum: number) => {
     let reputation = reputationNum
       .toString(registers.length * 2)
       .padStart(registers.length * 2, "0");
-
     let colorReputation = "";
     let currentStat = 0;
     for (let i = 0; i < reputation.length; i++) {
