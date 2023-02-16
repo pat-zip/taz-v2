@@ -1,6 +1,7 @@
-const Check = ({ stats, setCurrentNode, data }) => {
+const Check = ({ stats, setCurrentNode, data, clearedChallenges }) => {
+  const statCheck = data.stat_checks[0];
   const determineSuccess = () => {
-    if (stats[data.stat_checks[0].stat] >= data.stat_checks[0].treshold) {
+    if (stats[statCheck.stat] >= statCheck.treshold) {
       return true;
     } else {
       return false;
@@ -13,11 +14,11 @@ const Check = ({ stats, setCurrentNode, data }) => {
     let updatedStats: [];
 
     if (determineSuccess()) {
-      stat = data.stat_checks[0].success.stat;
-      value = stats[stat] + data.stat_checks[0].success.modifier;
+      stat = statCheck.success.stat;
+      value = statCheck.success.modifier;
     } else {
-      stat = data.stat_checks[0].fail.stat;
-      value = stats[stat] + data.stat_checks[0].fail.modifier;
+      stat = statCheck.fail.stat;
+      value = statCheck.fail.modifier;
       if (value < 0) {
         value = 0;
       }
@@ -27,15 +28,34 @@ const Check = ({ stats, setCurrentNode, data }) => {
     localStorage.setItem("stats", JSON.stringify(updatedStats));
   };
 
+  const updateClearedStatChecks = () => {
+    const updatedStatChecks = [
+      ...clearedChallenges["stat_checks"],
+      statCheck.id,
+    ];
+    console.log("Updated stat checks: ", updatedStatChecks);
+    const updatedChallenges = {
+      ...clearedChallenges,
+      ["stat_checks"]: updatedStatChecks,
+    };
+    console.log("Updated challenges: ", updatedChallenges);
+    localStorage.setItem(
+      "clearedChallenges",
+      JSON.stringify(updatedChallenges)
+    );
+  };
+
   const next = () => {
     updateStats();
-    localStorage.setItem("currentNode", data.stat_checks[0].next.toString());
-    setCurrentNode(data.stat_checks[0].next);
+    updateClearedStatChecks();
+    localStorage.setItem("currentNode", statCheck.next.toString());
+    setCurrentNode(statCheck.next);
   };
 
   return (
     <div className="flex flex-col items-center my-5 p-1 text-center w-[900px] text-white max-h-screen">
       <h2>Checking stat: {data.stat_checks[0].stat}</h2>
+      <p>Treshold: {data.stat_checks[0].treshold}</p>
       {determineSuccess() ? (
         <p>{data.stat_checks[0].success.text}</p>
       ) : (
