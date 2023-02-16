@@ -54,9 +54,7 @@ const CurrentNode: FC<Props> = ({ data, updateGameData, setGameOver }) => {
           <h4 className="text-lg font-bold">Stats</h4>
           <div className="flex justify-center items-center">
             <BiHeart size="1.6rem" />
-            <h4 className="text-md ml-1 text-lg">
-              HP: 250/250 (100%)
-            </h4>
+            <h4 className="text-md ml-1 text-lg">HP: 250/250 (100%)</h4>
           </div>
           <div className="flex justify-center items-center">
             <GiBroadsword size="1.6rem" />
@@ -121,15 +119,26 @@ const CurrentNode: FC<Props> = ({ data, updateGameData, setGameOver }) => {
         <h4 className="font-bold">{data.question}</h4>
         <ul className="w-[600px] text-left p-2">
           {data.edges.map((option: any) => {
-            return (
-              <li
-                className="cursor-pointer py-1 hover:bg-gray-300 px-2"
-                key={option.id}
-                onClick={() => next(option.next)}
-              >
-                {option.action}
-              </li>
-            );
+            if (option.next) {
+              return (
+                <li
+                  className="cursor-pointer py-1 hover:bg-gray-300 px-2"
+                  key={option.id}
+                  onClick={() => next(option.next)}
+                >
+                  {option.action}
+                </li>
+              );
+            } else {
+              return (
+                <li
+                  className="cursor-pointer py-1 text-gray-300 px-2"
+                  key={option.id}
+                >
+                  {option.action}
+                </li>
+              );
+            }
           })}
         </ul>
       </div>
