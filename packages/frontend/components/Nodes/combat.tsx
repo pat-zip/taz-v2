@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function Combat({ selectedMonster, clearChallenge }) {
+function Combat({ selectedMonster }) {
   const [playerHealth, setPlayerHealth] = useState(100);
   const [monsterHealth, setMonsterHealth] = useState(
     selectedMonster ? selectedMonster.health : 0
@@ -76,7 +76,6 @@ function Combat({ selectedMonster, clearChallenge }) {
 
   useEffect(() => {
     if (monsterHealth <= 0) {
-      clearChallenge();
     } else if (playerHealth <= 0) {
       alert("GAME OVER!");
     }

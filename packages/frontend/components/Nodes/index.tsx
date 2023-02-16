@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import CurrentNode from "./node";
 import Combat from "./combat";
-import Puzzle from "./puzzle";
 import End from "./end";
 import Check from "./check";
 
@@ -9,7 +8,6 @@ const Nodes = () => {
   const [gameOver, setGameOver] = useState(false);
   const [currentNode, setCurrentNode] = useState(null);
   const [nodeData, setNodeData] = useState(null);
-  const [amountCleared, setAmountCleared] = useState(0);
   const [stats, setStats] = useState(null);
 
   const updateGameData = (next) => {
@@ -53,17 +51,6 @@ const Nodes = () => {
       });
   }
 
-  async function clearChallenge() {
-    await fetch("/api/game/clearChallenge", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ node: currentNode }),
-    });
-    setAmountCleared(amountCleared + 1);
-  }
-
   function getGameData() {
     const savedStats = localStorage.getItem("stats");
     const savedNode = localStorage.getItem("currentNode");
@@ -81,32 +68,21 @@ const Nodes = () => {
 
   useEffect(() => {
     getGameData();
-  }, [currentNode, amountCleared]);
+  }, [currentNode]);
 
   function renderNode() {
-    console.log(
-      "Challenge? ",
-      nodeData.hasChallenge,
-      "Cleared? ",
-      nodeData.isCleared
-    );
+    console.log("Challenge? ", nodeData.hasChallenge);
     if (gameOver) {
       return <End initGame={initGame} />;
     } else {
-      if (nodeData.hasChallenge && !nodeData.isCleared) {
+      if (nodeData.hasChallenge) {
         switch (nodeData.challengeType) {
           case "monster":
-            return (
-              <Combat
-                clearChallenge={clearChallenge}
-                selectedMonster={nodeData.monsters[0]}
-              />
-            );
+            return <Combat selectedMonster={nodeData.monsters[0]} />;
           case "stat_check":
             return (
               <Check
-                clearChallenge={clearChallenge}
-                updateGameData={updateGameData}
+                setCurrentNode={setCurrentNode}
                 stats={stats}
                 data={nodeData}
               />
