@@ -131,10 +131,7 @@ const CurrentNode: FC<Props> = ({ data, updateGameData, setGameOver }) => {
               );
             } else {
               return (
-                <li
-                  className="cursor-pointer py-1 text-gray-300 px-2"
-                  key={option.id}
-                >
+                <li className="py-1 text-gray-300 px-2" key={option.id}>
                   {option.action}
                 </li>
               );

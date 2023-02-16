@@ -3,6 +3,7 @@ import CurrentNode from "./node";
 import Combat from "./combat";
 import Puzzle from "./puzzle";
 import End from "./end";
+import Check from "./check";
 
 const Nodes = () => {
   const [gameOver, setGameOver] = useState(false);
@@ -101,11 +102,13 @@ const Nodes = () => {
                 selectedMonster={nodeData.monsters[0]}
               />
             );
-          case "puzzle":
+          case "stat_check":
             return (
-              <Puzzle
+              <Check
                 clearChallenge={clearChallenge}
-                selectedPuzzle={1}
+                updateGameData={updateGameData}
+                stats={stats}
+                data={nodeData}
               />
             );
         }

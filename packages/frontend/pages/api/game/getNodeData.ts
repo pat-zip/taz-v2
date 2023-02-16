@@ -6,16 +6,17 @@ const supabaseKey =
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log("triggered")
   try {
     const { node } = req.body;
     const response = await supabase
       .from("nodes")
       .select(
-        `title, description, question, image, hasChallenge, isCleared, challengeType, stat, modifier, edges (id, action, next), monsters (name, health, damage, image)`
+        `id, title, description, question, image, hasChallenge, isCleared, challengeType, stat, modifier, edges (id, action, next), monsters (name), stat_checks (id, treshold, success, fail, stat, next)`
       )
       .eq("id", node);
 
-    console.log(response.data[0].monsters);
+    console.log("Data: ", response.data);
 
     res.status(200).json(response.data[0]);
   } catch (err: any) {
