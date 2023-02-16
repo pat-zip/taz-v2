@@ -26,14 +26,17 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
           {/* <Link href="/users" className="text-gray-100hover:text-blue-700 mx-4">
                         Users List
                     </Link> */}
+          <Link href="/game" className="text-gray-100 hover:text-blue-700 mx-4">
+            Game
+          </Link>
           <Link href="/unirep" className="text-gray-100 hover:text-blue-700 mx-4">
             Unirep
           </Link>
           <Link href="/reputation" className="text-gray-100 hover:text-blue-700 mx-4">
             Stats
           </Link>
-          <Link href="/prove-stat" className="text-gray-100 hover:text-blue-700 mx-4">
-            Prove Stat
+          <Link href="/flow" className="text-gray-100 hover:text-blue-700 mx-4">
+            Flow
           </Link>
           {/* <a href="/api/users" className="text-gray-100 hover:text-blue-700 mx-4">
                         Users API
