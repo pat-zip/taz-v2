@@ -9,6 +9,7 @@ const Nodes = () => {
   const [currentNode, setCurrentNode] = useState(null);
   const [nodeData, setNodeData] = useState(null);
   const [stats, setStats] = useState(null);
+  const [clearedChallenges, setClearedChallenges] = useState(null);
 
   const updateGameData = (next) => {
     const stat = nodeData.stat;
@@ -32,8 +33,17 @@ const Nodes = () => {
       Experience: 0,
     };
     const initialNode = 1;
+    const initalClearedChallenges = {
+      combat: [],
+      stat_checks: [],
+    };
     localStorage.setItem("stats", JSON.stringify(initialStats));
     localStorage.setItem("currentNode", initialNode.toString());
+    localStorage.setItem(
+      "clearedChallenges",
+      JSON.stringify(initalClearedChallenges)
+    );
+
     setCurrentNode(1);
   };
 
@@ -54,6 +64,7 @@ const Nodes = () => {
   function getGameData() {
     const savedStats = localStorage.getItem("stats");
     const savedNode = localStorage.getItem("currentNode");
+    const clearedChallenges = localStorage.getItem("clearedChallenges");
 
     if (!savedStats || !savedNode) {
       initGame();
@@ -61,8 +72,11 @@ const Nodes = () => {
       getNodeData(savedNode);
       setStats(JSON.parse(savedStats));
       setCurrentNode(parseInt(savedNode));
+      setClearedChallenges(JSON.parse(clearedChallenges));
+
       console.log("current Node: ", currentNode);
       console.log("current Stats: ", stats);
+      console.log("current cleared challenges: ", clearedChallenges);
     }
   }
 
@@ -75,7 +89,10 @@ const Nodes = () => {
     if (gameOver) {
       return <End initGame={initGame} />;
     } else {
-      if (nodeData.hasChallenge) {
+      if (
+        nodeData.hasChallenge &&
+        !clearedChallenges["stat_checks"].includes(nodeData.stat_checks[0].id)
+      ) {
         switch (nodeData.challengeType) {
           case "monster":
             return <Combat selectedMonster={nodeData.monsters[0]} />;
@@ -83,6 +100,7 @@ const Nodes = () => {
             return (
               <Check
                 setCurrentNode={setCurrentNode}
+                clearedChallenges={clearedChallenges}
                 stats={stats}
                 data={nodeData}
               />
