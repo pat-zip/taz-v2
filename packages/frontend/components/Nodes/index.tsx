@@ -90,7 +90,7 @@ const Nodes = () => {
       nodeData.isCleared
     );
     if (gameOver) {
-      return <End />;
+      return <End initGame={initGame} />;
     } else {
       if (nodeData.hasChallenge && !nodeData.isCleared) {
         switch (nodeData.challengeType) {
