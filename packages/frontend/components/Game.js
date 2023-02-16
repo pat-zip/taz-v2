@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import data from './data/data.json';
-import monsters from './data/monsters.json';
-import puzzles from './data/puzzles.json';
-import Combat from './Combat';
-import Puzzle from './Puzzle';
-import Luck from './Luck';
+import React, { useState } from "react";
+import data from "./data/data.json";
+import monsters from "./data/monsters.json";
+import puzzles from "./data/puzzles.json";
+import Combat from "./Combat";
+import Puzzle from "./Puzzle";
+import Luck from "./Luck";
 
 function Game() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,10 +24,10 @@ function Game() {
   const [level, setLevel] = useState(1);
   const [xp, setXp] = useState(0);
 
-  const handleChoice = choiceIndex => {
+  const handleChoice = (choiceIndex) => {
     setSelectedChoice(choiceIndex);
     setIsChoice(true);
-    console.log("Choice Index", choiceIndex)
+    console.log("Choice Index", choiceIndex);
   };
 
   const handleNext = () => {
@@ -51,8 +51,7 @@ function Game() {
       setCurrentIndex(nextIndex);
       setSelectedChoice(null);
       setIsChoice(false);
-      console.log("Next Index", nextIndex)
-
+      console.log("Next Index", nextIndex);
     }
   };
 
@@ -65,7 +64,7 @@ function Game() {
     } else {
       setSelectedMonster(null);
       setCurrentIndex(currentIndex + 1);
-      alert("Challenge complete! You can move on to the next one.")
+      alert("Challenge complete! You can move on to the next one.");
     }
   };
 
@@ -74,7 +73,7 @@ function Game() {
     // for example:
     const damage = strength + dexterity - selectedMonster.defense;
     return damage;
-  }
+  };
 
   return (
     <div className="bg-gray-800 p-4 flex justify-center items-center">
@@ -86,14 +85,22 @@ function Game() {
         {data[currentIndex].isChallenge && (
           <div>
             {selectedMonster !== "" && (
-              <Combat selectedMonster={selectedMonster} setSelectedMonster={setSelectedMonster} setCurrentIndex={setCurrentIndex} />
+              <Combat
+                selectedMonster={selectedMonster}
+                setSelectedMonster={setSelectedMonster}
+                setCurrentIndex={setCurrentIndex}
+              />
             )}
             {selectedPuzzle !== "" && (
-              <Puzzle selectedPuzzle={selectedPuzzle} setSelectedPuzzle={setSelectedPuzzle} setCurrentIndex={setCurrentIndex} userAnswer={userAnswer} setUserAnswer={setUserAnswer}/>
+              <Puzzle
+                selectedPuzzle={selectedPuzzle}
+                setSelectedPuzzle={setSelectedPuzzle}
+                setCurrentIndex={setCurrentIndex}
+                userAnswer={userAnswer}
+                setUserAnswer={setUserAnswer}
+              />
             )}
-            {selectedChoice === 2 && (
-              <Luck setCurrentIndex={setCurrentIndex} />
-            )}
+            {selectedChoice === 2 && <Luck setCurrentIndex={setCurrentIndex} />}
             {data[currentIndex].choices.map((choice, index) => (
               <button
                 key={index}
@@ -105,18 +112,15 @@ function Game() {
                 {choice.text}
               </button>
             ))}
-            {selectedMonster !== "" &&(
-              <button
-                className="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-600"
-                onClick={handleCombat}
-              >
+            {selectedMonster !== "" && (
+              <button className="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-600" onClick={handleCombat}>
                 Battle
               </button>
-            )} 
+            )}
           </div>
         )}
         {!data[currentIndex].isChallenge && (
-          <div className='flex justify-center'>
+          <div className="flex justify-center">
             {data[currentIndex].choices.map((choice, index) => (
               <button
                 key={index}
@@ -130,21 +134,16 @@ function Game() {
             ))}
           </div>
         )}
-        { isChoice === true && (
-            <div className="flex justify-center">
-              <button
-                className="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-600"
-                onClick={handleNext}
-              >
-                Next
-              </button>
-            </div>
-            )}
+        {isChoice === true && (
+          <div className="flex justify-center">
+            <button className="bg-green-500 text-white p-2 rounded-lg mt-4 hover:bg-green-600" onClick={handleNext}>
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 export default Game;
-
-

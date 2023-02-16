@@ -4,7 +4,7 @@ import {Unirep} from "@unirep/contracts/Unirep.sol";
 import "./ProveRepRegisterVerifier.sol";
 
 // Uncomment this line to use console.log
-// import "hardhat/console.sol";
+import "hardhat/console.sol";
 
 contract UnirepApp {
     Unirep public unirep;
@@ -42,6 +42,17 @@ contract UnirepApp {
         uint256[] memory publicSignals,
         uint256[8] memory proof
     ) public {
+        console.log("UnirepApp Contract: userSignUp");
+        console.log("public signal 0 - identityCommitment: ", publicSignals[0]);
+        console.log("public signal 2 - attester Id: ", uint256(uint160(address(this))), " should = ", publicSignals[2]);
+        console.log("public signal 3 - epoch: ", publicSignals[3]);
+
+
+        console.log("proof");
+        console.log(proof[0]);
+        console.log("unirep address");
+        console.log(address(unirep));
+
         unirep.userSignUp(publicSignals, proof);
     }
 
