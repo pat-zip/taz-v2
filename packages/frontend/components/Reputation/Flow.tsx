@@ -19,13 +19,14 @@ const Flow: React.FC<Props> = ({ stat, minValue }) => {
   const [identity, setIdentity] = useState(null);
   const [testUnirepText, setTestUnirepText] = useState("");
   const [isSubmittingAttestation, setIsSubmittingAttestation] = useState(false);
+  const [nonce, setNonce] = useState(0);
 
   const unirepAppAbi = require("../../abis/UnirepApp.json").abi;
   const unirepAbi = require("@unirep/contracts/abi/Unirep.json");
   const provider = new ethers.providers.JsonRpcProvider(ETH_PROVIDER_URL);
   const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
   const app = new ethers.Contract(APP_ADDRESS, unirepAppAbi, wallet);
-  const unirep = new ethers.Contract(UNIREP_ADDRESS, unirepAbi, provider);
+  const unirep = new ethers.Contract(UNIREP_ADDRESS, unirepAbi, wallet);
   // console.log("unirepAppAbi", unirepAppAbi);
   // console.log("unirepAbi", unirepAbi);
 
@@ -55,7 +56,6 @@ const Flow: React.FC<Props> = ({ stat, minValue }) => {
   };
 
   const checkSignUp = async () => {
-    // debugger;
     const appUserState = await genAppUserState();
     const hasSignedUp = await appUserState.hasSignedUp();
     console.log("User has signed up?: ", hasSignedUp);
@@ -95,7 +95,6 @@ const Flow: React.FC<Props> = ({ stat, minValue }) => {
 
   const handleSubmitAttestation = async () => {
     setIsSubmittingAttestation(true);
-    debugger;
 
     // Create the user state
     const appUserState = await genAppUserState();
@@ -107,15 +106,15 @@ const Flow: React.FC<Props> = ({ stat, minValue }) => {
       console.log("User not signed up");
       return;
     }
-
-    const nonce = 0;
     const { publicSignals, proof, epochKey, epoch } = await appUserState.genEpochKeyProof({ nonce });
+    setNonce(nonce + 1);
     await unirep.verifyEpochKeyProof(publicSignals, proof).then((t) => t.wait());
 
+    const currentEpoch = await appUserState.loadCurrentEpoch(); //   await unirep.currentEpoch();
     const posRep = 2;
     const negRep = 0;
-    const graffiti = hash1([`0x${Buffer.from("abc").toString("hex")}`]);
-    await app.submitAttestation(epoch, epochKey, posRep, negRep, graffiti).then((t) => t.wait());
+    const graffiti = 0; //hash1([`0x${Buffer.from("abc").toString("hex")}`]);
+    await app.submitAttestation(currentEpoch, epochKey, posRep, negRep, graffiti).then((t) => t.wait());
 
     setIsSubmittingAttestation(false);
   };
@@ -181,11 +180,11 @@ const Flow: React.FC<Props> = ({ stat, minValue }) => {
       </div>
       <div className="flex flex-col justify-center items-center h-32">
         <button
-          className="h-10 w-48 bg-neutral-500 text-white rounded-full py-2 px-4 mx-auto"
+          className="h-10 bg-neutral-500 text-white rounded-full py-2 px-4 flex items-center justify-center"
           onClick={handleSubmitAttestation}
         >
           Submit Rep
-          {isSubmittingAttestation ? <div className="w-4 h-4 border-4 rounded-md animate-spin m-auto" /> : ""}
+          {isSubmittingAttestation ? <div className="w-4 h-4 ml-4 border-4 rounded-md animate-spin " /> : ""}
         </button>
         <div className="text-gray-400 text-sm mt-2">Add Pos Rep: 2</div>
       </div>

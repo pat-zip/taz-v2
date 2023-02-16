@@ -47,7 +47,6 @@ contract UnirepApp {
         console.log("public signal 2 - attester Id: ", uint256(uint160(address(this))), " should = ", publicSignals[2]);
         console.log("public signal 3 - epoch: ", publicSignals[3]);
 
-
         console.log("proof");
         console.log(proof[0]);
         console.log("unirep address");
@@ -70,6 +69,16 @@ contract UnirepApp {
         uint256 negRep,
         uint256 graffiti
     ) public {
+        
+        uint256 epk = unirep.attesterCurrentEpoch(uint160(address(this)));
+        
+        console.log("UnirepApp Contract: submitAttestation");
+        console.log("targetEpoch: ", targetEpoch, " should = ", epk);
+        console.log("epochKey: ", epochKey);
+        console.log("posRep: ", posRep);
+        console.log("negRep: ", negRep);
+        console.log("graffiti: ", graffiti);
+        
         unirep.submitAttestation(
             targetEpoch,
             epochKey,
