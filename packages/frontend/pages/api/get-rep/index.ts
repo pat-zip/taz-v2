@@ -1,16 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 const snarkjs = require("snarkjs");
 import path from "path";
-import { APP_ADDRESS, UNIREP_ADDRESS, IDENTITY, ETH_PROVIDER_URL, PRIVATE_KEY } from "../../../../config.js";
+import { APP_ADDRESS, UNIREP_ADDRESS, IDENTITY, ETH_PROVIDER_URL, PRIVATE_KEY } from "../../../../../config.js";
 import { ethers } from "ethers";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const { stats } = req.body;
     console.log("stats: ", stats);
-    let posRep = 0;
-    let negRep = 0;
-    const registers = Object.values(stats);
+    let posRep: number = 0;
+    let negRep: number = 0;
+    const registers: number[] = Object.values(stats);
     console.log("registers.length", registers.length);
     for (let i = 0; i < registers.length; i++) {
       console.log("registers[i]: ", registers[i]);

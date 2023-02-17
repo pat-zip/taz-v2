@@ -1831,18 +1831,9 @@
     "@typescript-eslint/types" "5.50.0"
     eslint-visitor-keys "^3.3.0"
 
-"@unirep/circuits@2.0.0-alpha-3":
-  version "2.0.0-alpha-3"
-  resolved "https://registry.npmjs.org/@unirep/circuits/-/circuits-2.0.0-alpha-3.tgz"
-  integrity sha512-FfJrQLfl+2bijbN+nt57SC17WpDtY28YQVn86mAt8H9h93QG1hRBGueuy+cH58k0aWlUbQrHsgUG4hlG763v2g==
-  dependencies:
-    "@ethersproject/solidity" "^5.7.0"
-    "@unirep/utils" "2.0.0-alpha-3"
-    snarkjs "^0.5.0"
-
 "@unirep/circuits@2.0.0-alpha-4":
   version "2.0.0-alpha-4"
-  resolved "https://registry.npmjs.org/@unirep/circuits/-/circuits-2.0.0-alpha-4.tgz"
+  resolved "https://registry.yarnpkg.com/@unirep/circuits/-/circuits-2.0.0-alpha-4.tgz#bff28ce0a69f72e369ad8a8b8c11b130aa999dea"
   integrity sha512-LAEWPB2zo/CTlCcedwAdzwyMvxM0SoiXY7jY2uHKoOmLwTilhadFqWpw25TSkvDPhvPF6jzx7xXQ8OZF233+ug==
   dependencies:
     "@ethersproject/solidity" "^5.7.0"
@@ -1863,7 +1854,7 @@
 
 "@unirep/core@2.0.0-alpha-3":
   version "2.0.0-alpha-3"
-  resolved "https://registry.npmjs.org/@unirep/core/-/core-2.0.0-alpha-3.tgz"
+  resolved "https://registry.yarnpkg.com/@unirep/core/-/core-2.0.0-alpha-3.tgz#ce93ddcae503f47f747884c22c8d841a2058e60e"
   integrity sha512-JBIGxtgRVXrIC6WpIzlM4Sz5v/yjV5cTEVEYevmnzrQBjISu+u28Gt/AE0+a48mPnwMhVEx337SokBJCr+nLmw==
   dependencies:
     "@unirep/circuits" "2.0.0-alpha-4"
@@ -1873,14 +1864,14 @@
     ethers "^5.6.8"
     nanoid "3"
 
-"@unirep/utils@2.0.0-alpha-3":
-  version "2.0.0-alpha-3"
-  resolved "https://registry.npmjs.org/@unirep/utils/-/utils-2.0.0-alpha-3.tgz"
-  integrity sha512-zc411qHDKM2vZg1Tbr1IMaPfSlfsnMyaqbwlTakhaK8yuSf9PyXV8vxBZhXJjw4MlJRd72GzQrvvg4KQB5ZnVA==
+"@unirep/crypto@^2.0.0-alpha-0":
+  version "2.0.0-alpha-0"
+  resolved "https://registry.yarnpkg.com/@unirep/crypto/-/crypto-2.0.0-alpha-0.tgz#b7961af0ccecc6b8148730a0c1076088a09861e1"
+  integrity sha512-2C6kIJUNn4DmxNe7jgV5zA+LdKNq+3E35wIWfkROhLol0JunoRco0/sq3XBf+j4aY6PnSPxY2n44rbtWAy0H+Q==
   dependencies:
     "@zk-kit/incremental-merkle-tree" "^0.4.3"
+    circomlibjs "0.0.8"
     maci-crypto "^0.9.1"
-    poseidon-lite "^0.0.2"
 
 "@unirep/utils@2.0.0-alpha-4":
   version "2.0.0-alpha-4"
@@ -2049,7 +2040,7 @@ amdefine@>=0.0.4:
 
 anondb@^0.0.16:
   version "0.0.16"
-  resolved "https://registry.npmjs.org/anondb/-/anondb-0.0.16.tgz"
+  resolved "https://registry.yarnpkg.com/anondb/-/anondb-0.0.16.tgz#057bcc5d58676f3cc0983f99656f03641df3367b"
   integrity sha512-F5vu1HzXcEHARhIe6bJhaIss40aqz4Ht4PnQx/4T2r0ZRmne7YbzGLjMimgV+MtA4QHk9jhe4pM8MdUmt0zYag==
   dependencies:
     async-lock "^1.2.11"

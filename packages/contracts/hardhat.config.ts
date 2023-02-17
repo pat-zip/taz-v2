@@ -18,7 +18,7 @@ const config: HardhatUserConfig = {
     arbitrum_goerli: {
       url: "https://arb-goerli.g.alchemy.com/v2/FcZszLvAW6zFcakkxDoWtH8pW0n9jwMW",
       blockGasLimit: 12000000,
-      accounts: [process.env.ARBITRUM_GOERLI_PRIVATE_KEY || ""],
+      // accounts: [process.env.ARBITRUM_GOERLI_PRIVATE_KEY || ""],
     },
   },
   solidity: {
