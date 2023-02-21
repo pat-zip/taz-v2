@@ -113,31 +113,36 @@ const CurrentNode: FC<Props> = ({ data, updateGameData, setGameOver }) => {
           </div>
         </div>
       </div>
-      <h1 className="font-bold text-xl py-3">{data.title}</h1>
       <p>{data.description}</p>
       <div className="mt-6 border-2 border-white flex flex-col text-left items-start px-5 py-5 rounded-md h-full">
-        <h4 className="font-bold">{data.question}</h4>
-        <ul className="w-[600px] text-left p-2">
-          {data.edges.map((option: any) => {
-            if (option.next) {
-              return (
-                <li
-                  className="cursor-pointer py-1 hover:bg-gray-300 px-2"
-                  key={option.id}
-                  onClick={() => next(option.next)}
-                >
-                  {option.action}
-                </li>
-              );
-            } else {
-              return (
-                <li className="py-1 text-gray-300 px-2" key={option.id}>
-                  {option.action}
-                </li>
-              );
-            }
-          })}
-        </ul>
+        {data.edges ? (
+          <div>
+            <h4 className="font-bold">Choose an option:</h4>
+            <ul className="w-[600px] text-left p-2">
+              {data.edges.map((option: any) => {
+                if (option.next) {
+                  return (
+                    <li
+                      className="cursor-pointer py-1 hover:bg-gray-300 px-2"
+                      key={option.id}
+                      onClick={() => next(option.next)}
+                    >
+                      {option.action}
+                    </li>
+                  );
+                } else {
+                  return (
+                    <li className="py-1 text-gray-300 px-2" key={option.id}>
+                      {option.action}
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </div>
+         ) : (
+          <button onClick={() => next(data.next)}>Continue</button>
+        )}
       </div>
     </div>
   );

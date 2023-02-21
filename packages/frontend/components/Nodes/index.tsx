@@ -23,14 +23,15 @@ const Nodes = () => {
   const initGame = () => {
     console.log("Initializing new game");
     const initialStats = {
-      Strength: 0,
-      Constitution: 0,
-      Dexterity: 0,
-      Perception: 0,
-      Charisma: 0,
+      Strength: 10,
+      Constitution: 10,
+      Dexterity: 10,
+      Perception: 10,
+      Charisma: 10,
       Gold: 0,
       Items: 0,
       Experience: 0,
+      Life: 100
     };
     const initialNode = 1;
     const initalClearedChallenges = {
@@ -85,15 +86,15 @@ const Nodes = () => {
   }, [currentNode]);
 
   function renderNode() {
-    console.log("Challenge? ", nodeData.hasChallenge);
+    console.log("Challenge? ", nodeData.challenge);
     if (gameOver) {
       return <End initGame={initGame} />;
     } else {
       if (
-        nodeData.hasChallenge &&
+        nodeData.challenge &&
         !clearedChallenges["stat_checks"].includes(nodeData.stat_checks[0].id)
       ) {
-        switch (nodeData.challengeType) {
+        switch (nodeData.challenge.type) {
           case "monster":
             return <Combat selectedMonster={nodeData.monsters[0]} />;
           case "stat_check":
@@ -122,6 +123,7 @@ const Nodes = () => {
     <div className="flex flex-col bg-black min-h-screen justify-center border-2 border-black">
       {stats ? (
         <div className="flex flex-row justify-center p-2 text-white border-2 border-white">
+          <p className="mx-2">Life: {stats.Life}</p>
           <p className="mx-2">Strength: {stats.Strength}</p>
           <p className="mx-2">Constitution: {stats.Constitution}</p>
           <p className="mx-2">Dexterity: {stats.Dexterity}</p>
