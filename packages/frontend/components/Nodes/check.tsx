@@ -9,23 +9,22 @@ const Check = ({ stats, setCurrentNode, data, clearedChallenges }) => {
   };
 
   const updateStats = () => {
-    let stat: string;
-    let value: number;
-    let updatedStats: [];
+    let updatedStats = {};
+    let statChanges = [];
 
     if (determineSuccess()) {
-      stat = statCheck.success.stat;
-      value = statCheck.success.modifier;
+      statChanges = statCheck.success.statChanges;
+      console.log("Stat changes: ", statChanges);
     } else {
-      stat = statCheck.fail.stat;
-      value = statCheck.fail.modifier;
-      if (value < 0) {
-        value = 0;
-      }
+      statChanges = statCheck.fail.statChanges;
+      console.log("Stat changes: ", statChanges);
     }
-
-    updatedStats = { ...stats, [stat]: value };
-    localStorage.setItem("stats", JSON.stringify(updatedStats));
+    for (let i = 0; i < statChanges.length; i++) {
+      updatedStats[statChanges[i].stat] =
+        stats[statChanges[i].stat] + statChanges[i].modifier;
+    }
+    console.log("updated stats: ", updatedStats);
+    localStorage.setItem("stats", JSON.stringify({ ...stats, ...updatedStats }));
   };
 
   const updateClearedStatChecks = () => {
@@ -48,8 +47,13 @@ const Check = ({ stats, setCurrentNode, data, clearedChallenges }) => {
   const next = () => {
     updateStats();
     updateClearedStatChecks();
-    localStorage.setItem("currentNode", statCheck.next.toString());
-    setCurrentNode(statCheck.next);
+    if (determineSuccess()) {
+      localStorage.setItem("currentNode", statCheck.success.next.toString());
+      setCurrentNode(statCheck.success.next);
+    } else {
+      localStorage.setItem("currentNode", statCheck.fail.next.toString());
+      setCurrentNode(statCheck.fail.next);
+    }
   };
 
   return (
