@@ -3,8 +3,8 @@ import CurrentNode from "./node";
 import Combat from "./combat";
 import End from "./end";
 import Check from "./check";
-import { AiOutlineMenu, AiFillEye } from "react-icons/ai";
-import { BiCoin, BiUser, BiHeart, BiShield } from "react-icons/bi";
+import { AiFillEye } from "react-icons/ai";
+import { BiCoin } from "react-icons/bi";
 import {
   GiBiceps,
   GiHeartPlus,
@@ -33,8 +33,6 @@ const Nodes = () => {
       JSON.stringify({ ...stats, ...updatedStats })
     );
 
-    // const updatedStats = { ...stats, [stat]: value };
-    // localStorage.setItem("stats", JSON.stringify(updatedStats));
     localStorage.setItem("currentNode", next.toString());
     setCurrentNode(next);
   };

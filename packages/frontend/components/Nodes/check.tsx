@@ -75,7 +75,7 @@ const Check = ({ stats, setCurrentNode, data, clearedChallenges }) => {
           </div>
         )}
         <button
-          className="cursor-pointer py-1 hover:bg-gray-300 px-2"
+          className="cursor-pointer py-1 w-[100px] hover:bg-gray-300 px-2"
           onClick={() => next()}
         >
           {"[ Continue ]"}
