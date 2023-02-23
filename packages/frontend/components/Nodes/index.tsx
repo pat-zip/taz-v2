@@ -3,6 +3,16 @@ import CurrentNode from "./node";
 import Combat from "./combat";
 import End from "./end";
 import Check from "./check";
+import { AiOutlineMenu, AiFillEye } from "react-icons/ai";
+import { BiCoin, BiUser, BiHeart, BiShield } from "react-icons/bi";
+import {
+  GiBiceps,
+  GiHeartPlus,
+  GiDualityMask,
+  GiWingfoot,
+} from "react-icons/gi";
+
+import { BsLightningCharge } from "react-icons/bs";
 
 const Nodes = () => {
   const [gameOver, setGameOver] = useState(false);
@@ -31,7 +41,7 @@ const Nodes = () => {
       Gold: 0,
       Items: 0,
       Experience: 0,
-      Life: 100
+      Life: 100,
     };
     const initialNode = 1;
     const initalClearedChallenges = {
@@ -86,52 +96,75 @@ const Nodes = () => {
   }, [currentNode]);
 
   function renderNode() {
-    console.log("Challenge? ", nodeData.challenge);
-    if (gameOver) {
-      return <End initGame={initGame} />;
-    } else {
-      if (
-        nodeData.challenge &&
-        !clearedChallenges["stat_checks"].includes(nodeData.stat_checks[0].id)
-      ) {
-        switch (nodeData.challenge.type) {
-          case "monster":
-            return <Combat selectedMonster={nodeData.monsters[0]} />;
-          case "stat_check":
-            return (
-              <Check
-                setCurrentNode={setCurrentNode}
-                clearedChallenges={clearedChallenges}
-                stats={stats}
-                data={nodeData}
-              />
-            );
-        }
-      } else {
-        return (
-          <CurrentNode
-            data={nodeData}
-            updateGameData={updateGameData}
-            setGameOver={setGameOver}
-          />
-        );
+    console.log("type? ", nodeData.type);
+    if (!gameOver) {
+      switch (nodeData.type) {
+        case "combat":
+          return <Combat selectedMonster={nodeData.monsters[0]} />;
+        case "stat_check":
+          return (
+            <Check
+              setCurrentNode={setCurrentNode}
+              clearedChallenges={clearedChallenges}
+              stats={stats}
+              data={nodeData}
+            />
+          );
+        case "story":
+          return (
+            <CurrentNode
+              data={nodeData}
+              updateGameData={updateGameData}
+              setGameOver={setGameOver}
+            />
+          );
       }
+    } else {
+      return <End initGame={initGame} />;
     }
   }
 
   return (
-    <div className="flex flex-col bg-black min-h-screen justify-center border-2 border-black">
+    <div className="flex flex-col bg-black min-h-screen justify-center items-center border-2 border-black">
       {stats ? (
-        <div className="flex flex-row justify-center p-2 text-white border-2 border-white">
-          <p className="mx-2">Life: {stats.Life}</p>
-          <p className="mx-2">Strength: {stats.Strength}</p>
-          <p className="mx-2">Constitution: {stats.Constitution}</p>
-          <p className="mx-2">Dexterity: {stats.Dexterity}</p>
-          <p className="mx-2">Perception: {stats.Perception}</p>
-          <p className="mx-2">Charisma: {stats.Charisma}</p>
-          <p className="mx-2">Experience: {stats.Experience}</p>
-          <p className="mx-2">Gold: {stats.Gold}</p>
-          <p className="mx-2">Items: {stats.Items}</p>
+        <div className="flex flex-row border-2 border-white w-[400px] h-full w-3/6 py-2 px-2 mr-5 rounded-md text-white bg-black justify-between p-3">
+          <div className="flex flex-col items-start">
+            <div className="flex justify-center items-center">
+              <GiBiceps size="1.6rem" />
+              <h4 className="text-md ml-1 text-lg">
+                Strength: {stats.Strength}
+              </h4>
+            </div>
+            <div className="flex justify-center items-center">
+              <GiWingfoot size="1.6rem" />
+              <h4 className="text-md ml-1 text-lg">
+                Dexterity: {stats.Dexterity}
+              </h4>
+            </div>
+            <div className="flex justify-center items-center">
+              <GiHeartPlus size="1.6rem" />
+              <h4 className="text-md ml-1 text-lg">
+                Constitution: {stats.Constitution}
+              </h4>
+            </div>
+            <div className="flex justify-center items-center">
+              <AiFillEye size="1.6rem" />
+              <h4 className="text-md ml-1 text-lg">
+                Perception: {stats.Perception}
+              </h4>
+            </div>
+            <div className="flex justify-center items-center">
+              <GiDualityMask size="1.6rem" />
+              <h4 className="text-md ml-1 text-lg">
+                Charisma: {stats.Charisma}
+              </h4>
+            </div>
+          </div>
+          <div>
+            <h4>Life: {stats.Life}</h4>
+            <h4>Gold: {stats.Gold}</h4>
+            <h4>XP: {stats.Experience}</h4>
+          </div>
         </div>
       ) : (
         ""

@@ -14,17 +14,17 @@ const Check = ({ stats, setCurrentNode, data, clearedChallenges }) => {
 
     if (determineSuccess()) {
       statChanges = statCheck.success.statChanges;
-      console.log("Stat changes: ", statChanges);
     } else {
       statChanges = statCheck.fail.statChanges;
-      console.log("Stat changes: ", statChanges);
     }
     for (let i = 0; i < statChanges.length; i++) {
       updatedStats[statChanges[i].stat] =
         stats[statChanges[i].stat] + statChanges[i].modifier;
     }
-    console.log("updated stats: ", updatedStats);
-    localStorage.setItem("stats", JSON.stringify({ ...stats, ...updatedStats }));
+    localStorage.setItem(
+      "stats",
+      JSON.stringify({ ...stats, ...updatedStats })
+    );
   };
 
   const updateClearedStatChecks = () => {
@@ -32,12 +32,10 @@ const Check = ({ stats, setCurrentNode, data, clearedChallenges }) => {
       ...clearedChallenges["stat_checks"],
       statCheck.id,
     ];
-    console.log("Updated stat checks: ", updatedStatChecks);
     const updatedChallenges = {
       ...clearedChallenges,
       ["stat_checks"]: updatedStatChecks,
     };
-    console.log("Updated challenges: ", updatedChallenges);
     localStorage.setItem(
       "clearedChallenges",
       JSON.stringify(updatedChallenges)
