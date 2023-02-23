@@ -13,8 +13,6 @@ import {
   GiHearts,
 } from "react-icons/gi";
 
-import { BsLightningCharge } from "react-icons/bs";
-
 const Nodes = () => {
   const [gameOver, setGameOver] = useState(false);
   const [currentNode, setCurrentNode] = useState(null);
@@ -23,10 +21,20 @@ const Nodes = () => {
   const [clearedChallenges, setClearedChallenges] = useState(null);
 
   const updateGameData = (next) => {
-    const stat = nodeData.stat;
-    const value = stats[stat] + nodeData.modifier;
-    const updatedStats = { ...stats, [stat]: value };
-    localStorage.setItem("stats", JSON.stringify(updatedStats));
+    let updatedStats = {};
+    const statChanges = nodeData.stat_changes.statChanges;
+
+    for (let i = 0; i < statChanges.length; i++) {
+      updatedStats[statChanges[i].stat] =
+        stats[statChanges[i].stat] + statChanges[i].modifier;
+    }
+    localStorage.setItem(
+      "stats",
+      JSON.stringify({ ...stats, ...updatedStats })
+    );
+
+    // const updatedStats = { ...stats, [stat]: value };
+    // localStorage.setItem("stats", JSON.stringify(updatedStats));
     localStorage.setItem("currentNode", next.toString());
     setCurrentNode(next);
   };
@@ -126,8 +134,8 @@ const Nodes = () => {
   }
 
   return (
-    <div className="flex flex-col bg-gray-200 min-h-screen justify-center items-center">
-      <div className="w-[1200px] bg-gray-100 flex flex-col justify-center border-2 border-white">
+    <div className="flex flex-col min-h-screen justify-center items-center">
+      <div className="w-[1200px] bg-gray-100 flex flex-col justify-center border-2 border-gray-500">
         {stats ? (
           <div className="flex flex-row p-3 text-white bg-black justify-between">
             <div className="flex flex-row items-start">
@@ -171,7 +179,7 @@ const Nodes = () => {
         ) : (
           ""
         )}
-        <div className="flex flex-col bg-gray-400 text-center w-full text-white h-[500px]">
+        <div className="flex flex-col bg-gray-200 text-center w-full text-black h-[500px]">
           {currentNode && nodeData ? renderNode() : "loading"}
         </div>
       </div>

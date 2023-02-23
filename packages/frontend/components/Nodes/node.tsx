@@ -1,18 +1,4 @@
 import { FC } from "react";
-
-import { AiOutlineMenu } from "react-icons/ai";
-
-import { BiCoin, BiUser, BiHeart, BiShield } from "react-icons/bi";
-
-import {
-  GiBroadsword,
-  GiBroadDagger,
-  GiFrontTeeth,
-  GiFocusedLightning,
-} from "react-icons/gi";
-
-import { BsLightningCharge } from "react-icons/bs";
-
 import Node from "../../types/Node";
 
 type Props = {
@@ -32,7 +18,7 @@ const CurrentNode: FC<Props> = ({ data, updateGameData, setGameOver }) => {
 
   return (
       <div className="flex flex-row justify-between h-full">
-        <div className="flex flex-col justify-between py-8 w-[600px]">
+        <div className="flex flex-col justify-between py-8 w-[600px] text-lg">
           <p className="p-5 text-left">{data.description}</p>
           <div className="flex flex-col text-left items-start px-5">
             {data.edges.length > 0 ? (
@@ -52,7 +38,7 @@ const CurrentNode: FC<Props> = ({ data, updateGameData, setGameOver }) => {
                       );
                     } else {
                       return (
-                        <li className="py-1 text-gray-300 px-2" key={option.id}>
+                        <li className="py-1 text-gray-500 px-2" key={option.id}>
                           {option.action}
                         </li>
                       );

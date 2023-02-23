@@ -9,11 +9,11 @@ const End = ({ initGame }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center my-5 p-1 text-center text-white h-full">
+    <div className="flex flex-col items-center justify-center my-5 p-1 text-center h-full">
       <h1 className="text-2xl mb-5">End of the Story!</h1>
       <p>You have reached the end of this particular story branch.</p>
       <p>Want to play a new game?</p>
-      <button className="border border-white p-2 my-4 w-[200px]" onClick={() => resetGame()}>
+      <button className="border border-black hover:bg-black hover:text-white p-2 my-4 w-[200px]" onClick={() => resetGame()}>
         New Game
       </button>
     </div>

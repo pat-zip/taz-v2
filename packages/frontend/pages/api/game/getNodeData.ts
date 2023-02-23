@@ -11,7 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const response = await supabase
       .from("nodes")
       .select(
-        `id, description, image, type, XP, next, edges (id, action, next), monsters (name), stat_checks (id, stat, treshold, success, fail)`
+        `id, description, image, type, stat_changes, next, edges (id, action, next), monsters (name), stat_checks (id, stat, treshold, success, fail)`
       )
       .eq("id", node);
 
