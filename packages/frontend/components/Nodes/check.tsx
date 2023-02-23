@@ -55,20 +55,35 @@ const Check = ({ stats, setCurrentNode, data, clearedChallenges }) => {
   };
 
   return (
-    <div className="flex flex-col items-center my-5 p-1 text-center w-[900px] text-white max-h-screen">
-      <h2>Checking stat: {data.stat_checks[0].stat}</h2>
-      <p>Treshold: {data.stat_checks[0].treshold}</p>
-      {determineSuccess() ? (
-        <p>{data.stat_checks[0].success.text}</p>
-      ) : (
-        <p>{data.stat_checks[0].fail.text}</p>
-      )}
-      <button
-        className="border border-white p-2 my-4 w-[200px]"
-        onClick={() => next()}
-      >
-        Continue
-      </button>
+    <div className="flex flex-row justify-between h-full">
+      <div className="flex flex-col justify-between py-8 w-[600px]">
+        {determineSuccess() ? (
+          <div>
+            <p>{statCheck.success.text}</p>
+            <p>
+              Your {statCheck.success.statChanges[0].stat} increases by{" "}
+              {statCheck.success.statChanges[0].modifier}
+            </p>
+          </div>
+        ) : (
+          <div>
+            <p>{statCheck.fail.text}</p>
+            <p>
+              Your {statCheck.fail.statChanges[0].stat} decreases by{" "}
+              {statCheck.fail.statChanges[0].modifier}
+            </p>
+          </div>
+        )}
+        <button
+          className="cursor-pointer py-1 hover:bg-gray-300 px-2"
+          onClick={() => next()}
+        >
+          {"[ Continue ]"}
+        </button>
+      </div>
+      <div className="w-[600px] bg-gray-100">
+        <img className="h-full" src={data.image} alt="image" />
+      </div>
     </div>
   );
 };

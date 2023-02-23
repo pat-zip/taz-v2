@@ -131,41 +131,41 @@ const Nodes = () => {
         {stats ? (
           <div className="flex flex-row p-3 text-white bg-black justify-between">
             <div className="flex flex-row items-start">
-              <div className="flex justify-center items-center mx-2">
+              <div className="flex justify-center items-center mx-3">
                 <GiBiceps size="1.6rem" />
                 <h4 className="text-md ml-1 text-lg">STR: {stats.Strength}</h4>
               </div>
-              <div className="flex justify-center items-center mx-2">
+              <div className="flex justify-center items-center mx-3">
                 <GiWingfoot size="1.6rem" />
                 <h4 className="text-md ml-1 text-lg">DEX: {stats.Dexterity}</h4>
               </div>
-              <div className="flex justify-center items-center mx-2">
+              <div className="flex justify-center items-center mx-3">
                 <GiHeartPlus size="1.6rem" />
                 <h4 className="text-md ml-1 text-lg">
                   CON: {stats.Constitution}
                 </h4>
               </div>
-              <div className="flex justify-center items-center mx-2">
+              <div className="flex justify-center items-center mx-3">
                 <AiFillEye size="1.6rem" />
                 <h4 className="text-md ml-1 text-lg">
                   PER: {stats.Perception}
                 </h4>
               </div>
-              <div className="flex justify-center items-center mx-2">
+              <div className="flex justify-center items-center mx-3">
                 <GiDualityMask size="1.6rem" />
                 <h4 className="text-md ml-1 text-lg">CHA: {stats.Charisma}</h4>
               </div>
             </div>
             <div className="flex flex-row">
-              <div className="flex justify-center items-center mx-2">
+              <div className="flex justify-center items-center mx-3">
                 <GiHearts size="1.6rem" />
                 <h4 className="text-md ml-1 text-lg">{stats.Life}</h4>
               </div>
-              <div className="flex justify-center items-center mx-2">
+              <div className="flex justify-center items-center mx-3">
                 <BiCoin size="1.6rem" />
                 <h4 className="text-md ml-1 text-lg">{stats.Gold}</h4>
               </div>
-              <h4>XP: {stats.Experience}</h4>
+              <h4 className="text-md ml-1 text-lg">XP {stats.Experience}</h4>
             </div>
           </div>
         ) : (

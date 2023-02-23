@@ -9,7 +9,7 @@ const End = ({ initGame }) => {
   };
 
   return (
-    <div className="flex flex-col items-center my-5 p-1 text-center w-[900px] text-white max-h-screen">
+    <div className="flex flex-col items-center justify-center my-5 p-1 text-center text-white h-full">
       <h1 className="text-2xl mb-5">End of the Story!</h1>
       <p>You have reached the end of this particular story branch.</p>
       <p>Want to play a new game?</p>

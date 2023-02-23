@@ -61,7 +61,7 @@ const CurrentNode: FC<Props> = ({ data, updateGameData, setGameOver }) => {
                 </ul>
               </div>
             ) : (
-              <button onClick={() => next(data.next)}>Continue</button>
+              <button className="cursor-pointer py-1 hover:bg-gray-300 px-2" onClick={() => next(data.next)}>[ Continue ]</button>
             )}
           </div>
         </div>
