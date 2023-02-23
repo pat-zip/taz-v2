@@ -55,12 +55,12 @@ const Check = ({ stats, setCurrentNode, data, clearedChallenges }) => {
   };
 
   return (
-    <div className="flex flex-row justify-between h-full">
-      <div className="flex flex-col justify-between py-8 w-[600px]">
+    <div className="flex flex-row justify-between h-full text-lg">
+      <div className="flex flex-col justify-between px-5 py-8 w-[600px]">
         {determineSuccess() ? (
           <div>
             <p>{statCheck.success.text}</p>
-            <p>
+            <p className="mt-5">
               Your {statCheck.success.statChanges[0].stat} increases by{" "}
               {statCheck.success.statChanges[0].modifier}
             </p>
@@ -68,14 +68,14 @@ const Check = ({ stats, setCurrentNode, data, clearedChallenges }) => {
         ) : (
           <div>
             <p>{statCheck.fail.text}</p>
-            <p>
+            <p className="mt-6">
               Your {statCheck.fail.statChanges[0].stat} decreases by{" "}
               {statCheck.fail.statChanges[0].modifier}
             </p>
           </div>
         )}
         <button
-          className="cursor-pointer py-1 w-[100px] hover:bg-gray-300 px-2"
+          className="cursor-pointer py-1 w-[120px] hover:bg-gray-300 px-2"
           onClick={() => next()}
         >
           {"[ Continue ]"}
