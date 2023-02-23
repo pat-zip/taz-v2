@@ -31,41 +31,44 @@ const CurrentNode: FC<Props> = ({ data, updateGameData, setGameOver }) => {
   }
 
   return (
-    <div className="flex flex-col my-5 p-1 text-center w-[900px] text-white max-h-screen">
-      <div className="flex justify-between items-center h-50 rounded-md my-5 w-full">
-      </div>
-      <p>{data.description}</p>
-      <div className="mt-6 border-2 border-white flex flex-col text-left items-start px-5 py-5 rounded-md h-full">
-        {data.edges.length > 0 ? (
-          <div>
-            <h4 className="font-bold">Choose an option:</h4>
-            <ul className="w-[600px] text-left p-2">
-              {data.edges.map((option: any) => {
-                if (option.next) {
-                  return (
-                    <li
-                      className="cursor-pointer py-1 hover:bg-gray-300 px-2"
-                      key={option.id}
-                      onClick={() => next(option.next)}
-                    >
-                      {option.action}
-                    </li>
-                  );
-                } else {
-                  return (
-                    <li className="py-1 text-gray-300 px-2" key={option.id}>
-                      {option.action}
-                    </li>
-                  );
-                }
-              })}
-            </ul>
+      <div className="flex flex-row justify-between h-full">
+        <div className="flex flex-col justify-between py-8 w-[600px]">
+          <p className="p-5 text-left">{data.description}</p>
+          <div className="flex flex-col text-left items-start px-5">
+            {data.edges.length > 0 ? (
+              <div>
+                <h4 className="font-bold">Choose an option:</h4>
+                <ul className="text-left p-2">
+                  {data.edges.map((option: any) => {
+                    if (option.next) {
+                      return (
+                        <li
+                          className="cursor-pointer py-1 hover:bg-gray-300 px-2"
+                          key={option.id}
+                          onClick={() => next(option.next)}
+                        >
+                          [ {option.action} ]
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li className="py-1 text-gray-300 px-2" key={option.id}>
+                          {option.action}
+                        </li>
+                      );
+                    }
+                  })}
+                </ul>
+              </div>
+            ) : (
+              <button onClick={() => next(data.next)}>Continue</button>
+            )}
           </div>
-         ) : (
-          <button onClick={() => next(data.next)}>Continue</button>
-        )}
+        </div>
+        <div className="w-[600px] bg-gray-100">
+          <img className="h-full" src={data.image} alt="image" />
+        </div>
       </div>
-    </div>
   );
 };
 

@@ -10,6 +10,7 @@ import {
   GiHeartPlus,
   GiDualityMask,
   GiWingfoot,
+  GiHearts,
 } from "react-icons/gi";
 
 import { BsLightningCharge } from "react-icons/bs";
@@ -125,52 +126,54 @@ const Nodes = () => {
   }
 
   return (
-    <div className="flex flex-col bg-black min-h-screen justify-center items-center border-2 border-black">
-      {stats ? (
-        <div className="flex flex-row border-2 border-white w-[400px] h-full w-3/6 py-2 px-2 mr-5 rounded-md text-white bg-black justify-between p-3">
-          <div className="flex flex-col items-start">
-            <div className="flex justify-center items-center">
-              <GiBiceps size="1.6rem" />
-              <h4 className="text-md ml-1 text-lg">
-                Strength: {stats.Strength}
-              </h4>
+    <div className="flex flex-col bg-gray-200 min-h-screen justify-center items-center">
+      <div className="w-[1200px] bg-gray-100 flex flex-col justify-center border-2 border-white">
+        {stats ? (
+          <div className="flex flex-row p-3 text-white bg-black justify-between">
+            <div className="flex flex-row items-start">
+              <div className="flex justify-center items-center mx-2">
+                <GiBiceps size="1.6rem" />
+                <h4 className="text-md ml-1 text-lg">STR: {stats.Strength}</h4>
+              </div>
+              <div className="flex justify-center items-center mx-2">
+                <GiWingfoot size="1.6rem" />
+                <h4 className="text-md ml-1 text-lg">DEX: {stats.Dexterity}</h4>
+              </div>
+              <div className="flex justify-center items-center mx-2">
+                <GiHeartPlus size="1.6rem" />
+                <h4 className="text-md ml-1 text-lg">
+                  CON: {stats.Constitution}
+                </h4>
+              </div>
+              <div className="flex justify-center items-center mx-2">
+                <AiFillEye size="1.6rem" />
+                <h4 className="text-md ml-1 text-lg">
+                  PER: {stats.Perception}
+                </h4>
+              </div>
+              <div className="flex justify-center items-center mx-2">
+                <GiDualityMask size="1.6rem" />
+                <h4 className="text-md ml-1 text-lg">CHA: {stats.Charisma}</h4>
+              </div>
             </div>
-            <div className="flex justify-center items-center">
-              <GiWingfoot size="1.6rem" />
-              <h4 className="text-md ml-1 text-lg">
-                Dexterity: {stats.Dexterity}
-              </h4>
-            </div>
-            <div className="flex justify-center items-center">
-              <GiHeartPlus size="1.6rem" />
-              <h4 className="text-md ml-1 text-lg">
-                Constitution: {stats.Constitution}
-              </h4>
-            </div>
-            <div className="flex justify-center items-center">
-              <AiFillEye size="1.6rem" />
-              <h4 className="text-md ml-1 text-lg">
-                Perception: {stats.Perception}
-              </h4>
-            </div>
-            <div className="flex justify-center items-center">
-              <GiDualityMask size="1.6rem" />
-              <h4 className="text-md ml-1 text-lg">
-                Charisma: {stats.Charisma}
-              </h4>
+            <div className="flex flex-row">
+              <div className="flex justify-center items-center mx-2">
+                <GiHearts size="1.6rem" />
+                <h4 className="text-md ml-1 text-lg">{stats.Life}</h4>
+              </div>
+              <div className="flex justify-center items-center mx-2">
+                <BiCoin size="1.6rem" />
+                <h4 className="text-md ml-1 text-lg">{stats.Gold}</h4>
+              </div>
+              <h4>XP: {stats.Experience}</h4>
             </div>
           </div>
-          <div>
-            <h4>Life: {stats.Life}</h4>
-            <h4>Gold: {stats.Gold}</h4>
-            <h4>XP: {stats.Experience}</h4>
-          </div>
+        ) : (
+          ""
+        )}
+        <div className="flex flex-col bg-gray-400 text-center w-full text-white h-[500px]">
+          {currentNode && nodeData ? renderNode() : "loading"}
         </div>
-      ) : (
-        ""
-      )}
-      <div className="flex justify-center border-2 border-black">
-        {currentNode && nodeData ? renderNode() : "loading"}
       </div>
     </div>
   );
