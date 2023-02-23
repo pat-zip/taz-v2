@@ -11,11 +11,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const response = await supabase
       .from("nodes")
       .select(
-        `title, description, question, image, hasChallenge, isCleared, challengeType, stat, modifier, edges (id, action, next), monsters (name, health, damage, image)`
+        `id, description, image, type, stat_changes, next, edges (id, action, next), monsters (name), stat_checks (id, stat, treshold, success, fail)`
       )
       .eq("id", node);
 
-    console.log(response.data[0].monsters);
+    console.log("Data: ", response.data);
 
     res.status(200).json(response.data[0]);
   } catch (err: any) {
